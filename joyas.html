@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyas | AshLing Boutique</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="fondo-animado"></div>
+    <nav class="barra-navegacion">
+        <ul>
+            <li><a href="index.html"><img src="iconos/menu.png" alt="Inicio" class="icono-nav"> Inicio</a></li>
+            <li><a href="carteras.html"><img src="iconos/cartera.png" alt="Carteras" class="icono-nav"> Carteras</a></li>
+            <li><a href="perfumes.html"><img src="iconos/perfume.png" alt="Perfumes" class="icono-nav"> Perfumes</a></li>
+            <li><a href="joyas.html"><img src="iconos/joyas.png" alt="Joyas" class="icono-nav"> Joyas</a></li>
+            <li><a href="ropa.html"><img src="iconos/ropa.png" alt="Ropa" class="icono-nav"> Ropa</a></li>
+            <li><a href="redes.html"><img src="iconos/menu.png" alt="Redes Sociales" class="icono-nav"> Redes Sociales</a></li>
+            <li><a href="compras.html"><img src="iconos/carrito.png" alt="Compras" class="icono-nav"> Compras</a></li>
+        </ul>
+    </nav>
+    <section class="seccion-menu">
+        <h2 style='color:#eab676; font-size:2rem; margin-bottom:2rem;'>Joyas</h2>
+        <div class='productos-lista'>
+            <div class='producto'>
+                <img src='joyas/anillo con diamante.jpeg' alt='Anillo con diamante' style='width:80px;height:80px;object-fit:cover;border-radius:10px;background:#eee;'>
+                <h3>Anillo con diamante</h3>
+                <p><b>Código:</b> JOY001</p>
+                <p><b>Precio:</b> $2000</p>
+                <p>Anillo con diamante, sofisticado y brillante para ocasiones únicas.</p>
+                <button style="margin-top:0.8rem; background:#eab676; color:#222; border:none; border-radius:20px; padding:0.5rem 1.2rem; font-weight:bold; cursor:pointer; transition:background 0.2s; font-size:1rem;" onclick="agregarACompras('Anillo con diamante','JOY001',2000,'joyas/anillo con diamante.jpeg','Anillo con diamante, sofisticado y brillante para ocasiones únicas.')">Agregar a compras</button>
+            </div>
+        </div>
+    </section>
+    <script>
+        function agregarACompras(nombre, codigo, precio, imagen, descripcion) {
+            var productos = JSON.parse(localStorage.getItem('productosSeleccionados') || '[]');
+            productos.push({nombre, codigo, precio, imagen, descripcion});
+            localStorage.setItem('productosSeleccionados', JSON.stringify(productos));
+            // Mensaje visual de agregado
+            var msg = document.createElement('div');
+            msg.textContent = 'Producto agregado al carrito';
+            msg.style.position = 'fixed';
+            msg.style.top = '30px';
+            msg.style.left = '50%';
+            msg.style.transform = 'translateX(-50%)';
+            msg.style.background = '#25d366';
+            msg.style.color = '#222';
+            msg.style.padding = '1rem 2rem';
+            msg.style.borderRadius = '16px';
+            msg.style.fontWeight = 'bold';
+            msg.style.fontSize = '1.1rem';
+            msg.style.boxShadow = '0 2px 12px #0003';
+            msg.style.zIndex = '9999';
+            document.body.appendChild(msg);
+            setTimeout(function(){ msg.remove(); }, 1600);
+        }
+        // Función para ampliar imagen al hacer clic
+        function ampliarImagen(imgSrc, alt) {
+            var overlay = document.createElement('div');
+            overlay.style.position = 'fixed';
+            overlay.style.top = '0';
+            overlay.style.left = '0';
+            overlay.style.width = '100vw';
+            overlay.style.height = '100vh';
+            overlay.style.background = 'rgba(0,0,0,0.8)';
+            overlay.style.display = 'flex';
+            overlay.style.alignItems = 'center';
+            overlay.style.justifyContent = 'center';
+            overlay.style.zIndex = '10000';
+            overlay.onclick = function() { overlay.remove(); };
+            var img = document.createElement('img');
+            img.src = imgSrc;
+            img.alt = alt || '';
+            img.style.maxWidth = '90vw';
+            img.style.maxHeight = '90vh';
+            img.style.borderRadius = '18px';
+            img.style.boxShadow = '0 4px 32px #000b';
+            overlay.appendChild(img);
+            document.body.appendChild(overlay);
+        }
+        // Asigna el evento a todas las imágenes de producto
+        window.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.producto img').forEach(function(img) {
+                img.style.cursor = 'zoom-in';
+                img.onclick = function(e) {
+                    e.stopPropagation();
+                    ampliarImagen(this.src, this.alt);
+                };
+            });
+        });
+    </script>
+</body>
+</html>

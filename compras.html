@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compras | AshLing Boutique</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="fondo-animado"></div>
+    <nav class="barra-navegacion">
+        <ul>
+            <li><a href="index.html"><img src="iconos/menu.png" alt="Inicio" class="icono-nav"> Inicio</a></li>
+            <li><a href="carteras.html"><img src="iconos/cartera.png" alt="Carteras" class="icono-nav"> Carteras</a></li>
+            <li><a href="perfumes.html"><img src="iconos/perfume.png" alt="Perfumes" class="icono-nav"> Perfumes</a></li>
+            <li><a href="joyas.html"><img src="iconos/joyas.png" alt="Joyas" class="icono-nav"> Joyas</a></li>
+            <li><a href="ropa.html"><img src="iconos/ropa.png" alt="Ropa" class="icono-nav"> Ropa</a></li>
+            <li><a href="redes.html"><img src="iconos/menu.png" alt="Redes Sociales" class="icono-nav"> Redes Sociales</a></li>
+            <li><a href="compras.html"><img src="iconos/carrito.png" alt="Compras" class="icono-nav"> Compras</a></li>
+        </ul>
+    </nav>
+    <h2 style='color:#eab676; font-size:2rem; margin:2.5rem 0 2rem 0; text-align:center;'>Tu carrito de compras</h2>
+    <div style="display:flex; flex-direction:row; justify-content:flex-start; align-items:flex-start; gap:2.5rem; max-width:100vw; margin:0 auto;">
+        <!-- Área de productos seleccionados -->
+        <div id="productos-seleccionados" style="flex:6; background:#fff; border-radius:18px; box-shadow:0 2px 12px #0002; padding:2rem; min-width:600px; max-width:80vw;">
+            <h3 style="color:#eab676; text-align:center; margin-top:0;">Productos seleccionados</h3>
+            <div id="tarjetas-productos" style="display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; align-items:start; margin-top:1.5rem;"></div>
+            <div id="total-productos" style="margin-top:2rem; text-align:center; font-size:1.2rem; color:#eab676; font-weight:bold;"></div>
+        </div>
+        <!-- Formulario de compra -->
+        <form id="form-compra" style="flex:1; max-width:400px; background:#fff; border-radius:18px; box-shadow:0 2px 12px #0002; padding:2rem; display:flex; flex-direction:column; gap:1.2rem; min-width:260px;">
+            <label style="color:#222; font-weight:600;">Nombre completo
+                <input type="text" name="nombre" required style="width:100%; padding:0.6rem; border-radius:8px; border:1px solid #ccc; margin-top:0.3rem;">
+            </label>
+            <label style="color:#222; font-weight:600;">Correo electrónico
+                <input type="email" name="email" required style="width:100%; padding:0.6rem; border-radius:8px; border:1px solid #ccc; margin-top:0.3rem;">
+            </label>
+            <label style="color:#222; font-weight:600;">Teléfono
+                <input type="tel" name="telefono" required style="width:100%; padding:0.6rem; border-radius:8px; border:1px solid #ccc; margin-top:0.3rem;">
+            </label>
+            <label style="color:#222; font-weight:600;">Dirección de entrega
+                <textarea name="direccion" required style="width:100%; padding:0.6rem; border-radius:8px; border:1px solid #ccc; margin-top:0.3rem; min-height:60px;"></textarea>
+            </label>
+            <button type="submit" style="background:#25d366; color:#222; border:none; border-radius:20px; padding:0.8rem 1.5rem; font-weight:bold; font-size:1.1rem; cursor:pointer; margin-top:1rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
+                <img src="iconos/carrito.png" alt="WhatsApp" style="width:22px; height:22px; vertical-align:middle;"> Enviar pedido al WhatsApp
+            </button>
+        </form>
+    </div>
+    <script>
+    // Mostrar productos seleccionados desde localStorage
+    var productosSeleccionados = JSON.parse(localStorage.getItem('productosSeleccionados') || '[]');
+    var tarjetas = document.getElementById('tarjetas-productos');
+    var totalDiv = document.getElementById('total-productos');
+    if(productosSeleccionados.length > 0) {
+        tarjetas.innerHTML = '';
+        var total = 0;
+        productosSeleccionados.forEach(function(prod, idx) {
+            var div = document.createElement('div');
+            div.className = 'producto';
+            div.style.background = '#fff';
+            div.style.color = '#222';
+            div.style.borderRadius = '14px';
+            div.style.boxShadow = '0 2px 12px rgba(0,0,0,0.10)';
+            div.style.padding = '1rem 0.7rem 0.7rem 0.7rem';
+            div.style.width = '200px';
+            div.style.display = 'flex';
+            div.style.flexDirection = 'column';
+            div.style.alignItems = 'center';
+            div.innerHTML = `
+                <img src='${prod.imagen}' alt='${prod.nombre}' style='width:100px;height:100px;object-fit:cover;border-radius:10px;background:#eee; margin-bottom:0.7rem;'>
+                <h3 style=\"color:#eab676; font-size:1.1rem; margin:0.3rem 0 0.1rem 0;\">${prod.nombre}</h3>
+                <p style=\"margin:0.1rem 0;font-size:0.95rem;\"><b>Código:</b> ${prod.codigo}</p>
+                <p style=\"margin:0.1rem 0;font-size:0.95rem;\"><b>Precio:</b> $${prod.precio}</p>
+                <p style=\"margin:0.1rem 0;font-size:0.95rem;\">${prod.descripcion}</p>
+                <button class='eliminar-producto' data-idx='${idx}' style='margin-top:0.7rem; background:#eab676; color:#222; border:none; border-radius:10px; padding:0.4rem 1rem; font-weight:bold; cursor:pointer;'>Eliminar</button>
+            `;
+            tarjetas.appendChild(div);
+            total += Number(prod.precio);
+        });
+        totalDiv.textContent = 'Total: $' + total;
+        // Botones eliminar
+        tarjetas.querySelectorAll('.eliminar-producto').forEach(function(btn) {
+            btn.onclick = function() {
+                var idx = Number(this.getAttribute('data-idx'));
+                productosSeleccionados.splice(idx, 1);
+                localStorage.setItem('productosSeleccionados', JSON.stringify(productosSeleccionados));
+                location.reload();
+            };
+        });
+    } else {
+        tarjetas.innerHTML = '<div style="color:#888; text-align:center;">No hay productos seleccionados.</div>';
+        totalDiv.textContent = '';
+    }
+    // Enviar pedido a WhatsApp con productos
+    document.getElementById('form-compra').onsubmit = function(e) {
+        e.preventDefault();
+        var nombre = this.nombre.value.trim();
+        var email = this.email.value.trim();
+        var telefono = this.telefono.value.trim();
+        var direccion = this.direccion.value.trim();
+        var productos = productosSeleccionados.map(function(p) {
+            return `${p.nombre} (Código: ${p.codigo}, Precio: $${p.precio})`;
+        }).join(', ');
+        var mensaje = `Hola, soy ${nombre}.\nMi correo: ${email}\nMi teléfono: ${telefono}\nDirección: ${direccion}\nQuiero realizar un pedido en AshLing Boutique.\nProductos: ${productos}`;
+        var url = 'https://api.whatsapp.com/send?phone=50379468807&text=' + encodeURIComponent(mensaje);
+        window.open(url, '_blank');
+        this.reset();
+        // Limpiar productos seleccionados y actualizar vista
+        localStorage.removeItem('productosSeleccionados');
+        tarjetas.innerHTML = '<div style="color:#888; text-align:center;">No hay productos seleccionados.</div>';
+        totalDiv.textContent = '';
+    };
+    </script>
+</body>
+</html>

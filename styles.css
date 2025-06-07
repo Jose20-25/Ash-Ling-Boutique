@@ -554,6 +554,9 @@ footer {
     }
     .barra-navegacion ul {
         gap: 0.5rem;
+        width: 100vw !important;
+        left: 0 !important;
+        border-radius: 0 0 18px 18px;
     }
     .barra-navegacion li {
         font-size: 0.92rem;
@@ -563,6 +566,42 @@ footer {
         width: 16px;
         height: 16px;
         margin-right: 0.2rem;
+    }
+    .menu-toggle {
+        left: 8px !important;
+        top: 8px !important;
+        padding: 0.7rem !important;
+    }
+    .productos-lista {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100vw;
+        align-items: center;
+    }
+    .producto {
+        width: 90vw;
+        max-width: 320px;
+        min-width: 180px;
+    }
+    footer {
+        flex-direction: column !important;
+        font-size: 0.9rem !important;
+        padding: 0.7rem 0.2rem 0.7rem 0.2rem !important;
+        gap: 0.5rem !important;
+    }
+    footer div {
+        margin-right: 0 !important;
+        justify-content: center !important;
+    }
+    .seccion-menu {
+        width: 99vw;
+        min-width: unset;
+        max-width: 99vw;
+        padding: 1rem 0.2rem;
+    }
+    .main-central, .bienvenida-central, .nombre-central, .tienda-central, .descripcion-central {
+        padding: 0 0.5rem !important;
+        font-size: 1rem !important;
     }
 }
 .inicio {

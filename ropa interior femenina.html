@@ -23,6 +23,7 @@
             <li><a href="ropa de niños.html"><img src="iconos/ropa de niños.png" alt="Ropa de Niños" class="icono-nav"> Ropa de Niños</a></li>
             <li><a href="ropa interior femenina.html"><img src="iconos/ropa interior femenina.png" alt="Ropa Interior Femenina" class="icono-nav"> Ropa Interior Femenina</a></li>
             <li><a href="ropa interior masculina.html"><img src="iconos/ropa interior masculina.png" alt="Ropa Interior de Caballero" class="icono-nav"> Ropa Interior de Caballero</a></li>
+            <li><a href="ofertas.html"><img src="iconos/ofertas.png" alt="Ofertas de temporada" class="icono-nav"> Ofertas de temporada</a></li>
             <li><a href="compras.html"><img src="iconos/carrito.png" alt="Compras" class="icono-nav"> Compras</a></li>
         </ul>
     </nav>
@@ -94,14 +95,23 @@
             };
         });
     });
-    // Menú desplegable
+    // Menú desplegable responsive
+    function toggleMenu() {
+        const menu = document.getElementById('menu-list');
+        menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+    }
     const toggle = document.getElementById('menu-toggle');
     const menu = document.getElementById('menu-list');
-    toggle.onclick = function() {
-        menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-    };
+    toggle.onclick = toggleMenu;
     document.addEventListener('click', function(e) {
         if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+            menu.style.display = 'none';
+        }
+    });
+    window.addEventListener('resize', function() {
+        if(window.innerWidth > 900) {
+            menu.style.display = 'flex';
+        } else {
             menu.style.display = 'none';
         }
     });

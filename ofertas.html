@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofertas de temporada | AshLing Boutique</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="fondo-animado"></div>
+    <nav class="barra-navegacion" style="position:relative;">
+        <div class="menu-toggle" id="menu-toggle" style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; padding:1rem; position:fixed; top:18px; left:18px; z-index:1100; background:#111; border-radius:12px; box-shadow:0 2px 12px #0006;">
+            <img src="iconos/menu.png" alt="Menú" style="width:28px; height:28px;">
+            <span style="color:#eab676; font-size:1.2rem; font-weight:bold;">Menú</span>
+        </div>
+        <ul id="menu-list" style="display:none; flex-direction:column; background:#111; position:fixed; left:18px; top:62px; width:220px; z-index:1000; margin:0; padding:1.5rem 0 1.5rem 0; box-shadow:0 4px 24px #0008; border-radius:0 0 18px 18px; max-height:60vh; overflow-y:auto;">
+            <li><a href="index.html"><img src="iconos/menu.png" alt="Inicio" class="icono-nav"> Inicio</a></li>
+            <li><a href="carteras.html"><img src="iconos/cartera.png" alt="Carteras" class="icono-nav"> Carteras</a></li>
+            <li><a href="perfumes.html"><img src="iconos/perfume.png" alt="Perfumes" class="icono-nav"> Perfumes</a></li>
+            <li><a href="joyas.html"><img src="iconos/joyas.png" alt="Joyas" class="icono-nav"> Joyas</a></li>
+            <li><a href="ropa de dama.html"><img src="iconos/ropa de dama.png" alt="Ropa de Dama" class="icono-nav"> Ropa de Dama</a></li>
+            <li><a href="ropa de caballero.html"><img src="iconos/ropa de caballero.png" alt="Ropa de Caballero" class="icono-nav"> Ropa de Caballero</a></li>
+            <li><a href="ropa de niños.html"><img src="iconos/ropa de niños.png" alt="Ropa de Niños" class="icono-nav"> Ropa de Niños</a></li>
+            <li><a href="ropa interior femenina.html"><img src="iconos/ropa interior femenina.png" alt="Ropa Interior Femenina" class="icono-nav"> Ropa Interior Femenina</a></li>
+            <li><a href="ropa interior masculina.html"><img src="iconos/ropa interior masculina.png" alt="Ropa Interior de Caballero" class="icono-nav"> Ropa Interior de Caballero</a></li>
+            <li><a href="ofertas.html"><img src="iconos/ofertas.png" alt="Ofertas de temporada" class="icono-nav"> Ofertas de temporada</a></li>
+            <li><a href="compras.html"><img src="iconos/carrito.png" alt="Compras" class="icono-nav"> Compras</a></li>
+        </ul>
+    </nav>
+    <main style="margin-top:4.5rem; margin-bottom:5.5rem; display:flex; flex-direction:column; align-items:center;">
+        <h1 style="color:#eab676; font-family:'Playfair Display',serif; font-size:2.2rem; text-align:center; margin:2rem 0 1.5rem 0;">Ofertas de temporada</h1>
+        <p style="color:#fff; font-size:1.15rem; text-align:center; max-width:600px; margin-bottom:2.5rem;">Descubre productos seleccionados con descuentos especiales por tiempo limitado. ¡Aprovecha estas ofertas y renueva tu estilo con AshLing Boutique!</p>
+        <section style="width:100%; max-width:900px; display:flex; flex-wrap:wrap; gap:2rem; justify-content:center;">
+            <!-- Producto 1: Cartera Rosada (20% de descuento) -->
+            <div class="producto" style="background:#222; border-radius:16px; box-shadow:0 2px 12px #0005; padding:1.2rem; width:260px; display:flex; flex-direction:column; align-items:center; position:relative;">
+                <span style="position:absolute; top:12px; left:12px; background:#eab676; color:#111; font-weight:bold; font-size:0.95rem; padding:0.2rem 0.7rem; border-radius:8px; box-shadow:0 2px 8px #0003; letter-spacing:1px;">-20%</span>
+                <img src="carteras/Cartera Rosada.jpg" alt="Cartera Rosada" style="width:180px; height:auto; border-radius:12px; margin-bottom:1rem; cursor:pointer; transition:transform 0.2s;" onclick="ampliarImagen(this)">
+                <h2 style="color:#eab676; font-size:1.1rem; text-align:center; margin:0 0 0.5rem 0;">Cartera Rosada</h2>
+                <p style="color:#fff; font-size:1rem; margin:0 0 0.5rem 0;">Antes: <span style="text-decoration:line-through; color:#eab67699;">$850</span> <br>Ahora: <span style="color:#eab676; font-weight:bold;">$680</span></p>
+                <button onclick="agregarACompras('Cartera Rosada', 680)" style="background:#eab676; color:#111; border:none; border-radius:8px; padding:0.5rem 1.2rem; font-size:1rem; font-weight:bold; cursor:pointer; display:flex; align-items:center; gap:0.5rem; margin-top:0.5rem;">
+                    <img src="iconos/carrito.png" alt="Agregar a compras" style="width:20px; height:20px;"> Agregar a compras
+                </button>
+            </div>
+            <!-- Producto 2: Vestido Azul (30% de descuento) -->
+            <div class="producto" style="background:#222; border-radius:16px; box-shadow:0 2px 12px #0005; padding:1.2rem; width:260px; display:flex; flex-direction:column; align-items:center; position:relative;">
+                <span style="position:absolute; top:12px; left:12px; background:#eab676; color:#111; font-weight:bold; font-size:0.95rem; padding:0.2rem 0.7rem; border-radius:8px; box-shadow:0 2px 8px #0003; letter-spacing:1px;">-30%</span>
+                <img src="ropa de dama/Vestido Azul.jpg" alt="Vestido Azul" style="width:180px; height:auto; border-radius:12px; margin-bottom:1rem; cursor:pointer; transition:transform 0.2s;" onclick="ampliarImagen(this)">
+                <h2 style="color:#eab676; font-size:1.1rem; text-align:center; margin:0 0 0.5rem 0;">Vestido Azul</h2>
+                <p style="color:#fff; font-size:1rem; margin:0 0 0.5rem 0;">Antes: <span style="text-decoration:line-through; color:#eab67699;">$1200</span> <br>Ahora: <span style="color:#eab676; font-weight:bold;">$840</span></p>
+                <button onclick="agregarACompras('Vestido Azul', 840)" style="background:#eab676; color:#111; border:none; border-radius:8px; padding:0.5rem 1.2rem; font-size:1rem; font-weight:bold; cursor:pointer; display:flex; align-items:center; gap:0.5rem; margin-top:0.5rem;">
+                    <img src="iconos/carrito.png" alt="Agregar a compras" style="width:20px; height:20px;"> Agregar a compras
+                </button>
+            </div>
+            <!-- Producto 3: Boxer (40% de descuento) -->
+            <div class="producto" style="background:#222; border-radius:16px; box-shadow:0 2px 12px #0005; padding:1.2rem; width:260px; display:flex; flex-direction:column; align-items:center; position:relative;">
+                <span style="position:absolute; top:12px; left:12px; background:#eab676; color:#111; font-weight:bold; font-size:0.95rem; padding:0.2rem 0.7rem; border-radius:8px; box-shadow:0 2px 8px #0003; letter-spacing:1px;">-40%</span>
+                <img src="ropa interior masculina/boxer.jpg" alt="Boxer" style="width:180px; height:auto; border-radius:12px; margin-bottom:1rem; cursor:pointer; transition:transform 0.2s;" onclick="ampliarImagen(this)">
+                <h2 style="color:#eab676; font-size:1.1rem; text-align:center; margin:0 0 0.5rem 0;">Boxer Algodón</h2>
+                <p style="color:#fff; font-size:1rem; margin:0 0 0.5rem 0;">Antes: <span style="text-decoration:line-through; color:#eab67699;">$250</span> <br>Ahora: <span style="color:#eab676; font-weight:bold;">$150</span></p>
+                <button onclick="agregarACompras('Boxer Algodón', 150)" style="background:#eab676; color:#111; border:none; border-radius:8px; padding:0.5rem 1.2rem; font-size:1rem; font-weight:bold; cursor:pointer; display:flex; align-items:center; gap:0.5rem; margin-top:0.5rem;">
+                    <img src="iconos/carrito.png" alt="Agregar a compras" style="width:20px; height:20px;"> Agregar a compras
+                </button>
+            </div>
+        </section>
+    </main>
+    <footer style="width:100vw; background:#111; color:#eab676; text-align:center; padding:1.2rem 0 0.5rem 0; position:fixed; left:0; bottom:0; z-index:1200; font-size:1rem; box-shadow:0 -2px 12px #0004; display:flex; align-items:center; justify-content:center;">
+        <span style="font-size:0.95rem; color:#eab676; flex:1; text-align:center;">&copy; 2025 AshLing Boutique. Marca registrada. Todos los derechos reservados.</span>
+        <div style="display:flex; gap:1.2rem; justify-content:flex-end; align-items:center; margin-right:2.5vw;">
+            <a href="https://www.facebook.com/AshLingBoutique" target="_blank" title="Facebook" style="display:inline-block; width:28px; height:28px; background:#fff; border-radius:50%; padding:2px;"><img src="iconos/facebook.png" alt="Facebook" style="width:24px; height:24px; display:block;"></a>
+            <a href="https://www.instagram.com/ashling.boutique" target="_blank" title="Instagram" style="display:inline-block; width:28px; height:28px; background:#fff; border-radius:50%; padding:2px;"><img src="iconos/instagram.png" alt="Instagram" style="width:24px; height:24px; display:block;"></a>
+            <a href="https://www.tiktok.com/@ashling.boutique" target="_blank" title="TikTok" style="display:inline-block; width:28px; height:28px; background:#fff; border-radius:50%; padding:2px;"><img src="iconos/tiktok.png" alt="TikTok" style="width:24px; height:24px; display:block;"></a>
+        </div>
+    </footer>
+    <script>
+        // Menú desplegable responsive
+        function toggleMenu() {
+            const menu = document.getElementById('menu-list');
+            menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+        }
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu-list');
+        toggle.onclick = toggleMenu;
+        document.addEventListener('click', function(e) {
+            if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+                menu.style.display = 'none';
+            }
+        });
+        window.addEventListener('resize', function() {
+            if(window.innerWidth > 900) {
+                menu.style.display = 'flex';
+            } else {
+                menu.style.display = 'none';
+            }
+        });
+        // Permitir scroll con rueda del mouse dentro del menú
+        menu.addEventListener('wheel', function(e) {
+            if (menu.scrollHeight > menu.clientHeight) {
+                e.stopPropagation();
+            }
+        }, { passive: false });
+        // Función para agregar a compras (carrito)
+        function agregarACompras(nombre, precio) {
+            let compras = JSON.parse(localStorage.getItem('compras') || '[]');
+            compras.push({ nombre, precio });
+            localStorage.setItem('compras', JSON.stringify(compras));
+            alert('Producto agregado a compras: ' + nombre);
+        }
+        // Función para ampliar imagen (zoom)
+        function ampliarImagen(img) {
+            const overlay = document.createElement('div');
+            overlay.style.position = 'fixed';
+            overlay.style.top = 0;
+            overlay.style.left = 0;
+            overlay.style.width = '100vw';
+            overlay.style.height = '100vh';
+            overlay.style.background = 'rgba(0,0,0,0.85)';
+            overlay.style.display = 'flex';
+            overlay.style.alignItems = 'center';
+            overlay.style.justifyContent = 'center';
+            overlay.style.zIndex = 2000;
+            overlay.onclick = function() { document.body.removeChild(overlay); };
+            const imgZoom = document.createElement('img');
+            imgZoom.src = img.src;
+            imgZoom.style.maxWidth = '90vw';
+            imgZoom.style.maxHeight = '80vh';
+            imgZoom.style.borderRadius = '18px';
+            imgZoom.style.boxShadow = '0 4px 32px #000b';
+            overlay.appendChild(imgZoom);
+            document.body.appendChild(overlay);
+        }
+    </script>
+</body>
+</html>

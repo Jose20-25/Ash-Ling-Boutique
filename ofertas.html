@@ -100,10 +100,45 @@
         }, { passive: false });
         // Función para agregar a compras (carrito)
         function agregarACompras(nombre, precio) {
-            let compras = JSON.parse(localStorage.getItem('compras') || '[]');
-            compras.push({ nombre, precio });
-            localStorage.setItem('compras', JSON.stringify(compras));
-            alert('Producto agregado a compras: ' + nombre);
+            // Datos de ejemplo para cada producto en ofertas
+            let productosOfertas = {
+                'Cartera Rosada': {
+                    codigo: 'CAR001',
+                    imagen: 'carteras/Cartera Rosada.jpg',
+                    descripcion: 'Cartera rosada en oferta, elegante y moderna.'
+                },
+                'Vestido Azul': {
+                    codigo: 'ROPD001',
+                    imagen: 'ropa de dama/Vestido Azul.jpg',
+                    descripcion: 'Vestido azul de alta calidad, perfecto para eventos especiales.'
+                },
+                'Boxer Algodón': {
+                    codigo: 'RIC001',
+                    imagen: 'ropa interior masculina/boxer.jpg',
+                    descripcion: 'Boxer de algodón cómodo y resistente.'
+                }
+            };
+            let info = productosOfertas[nombre] || {codigo:'', imagen:'', descripcion:''};
+            let productos = JSON.parse(localStorage.getItem('productosSeleccionados') || '[]');
+            productos.push({ nombre, codigo: info.codigo, precio, imagen: info.imagen, descripcion: info.descripcion });
+            localStorage.setItem('productosSeleccionados', JSON.stringify(productos));
+            // Mensaje visual de agregado
+            var msg = document.createElement('div');
+            msg.textContent = 'Producto agregado al carrito';
+            msg.style.position = 'fixed';
+            msg.style.top = '30px';
+            msg.style.left = '50%';
+            msg.style.transform = 'translateX(-50%)';
+            msg.style.background = '#25d366';
+            msg.style.color = '#222';
+            msg.style.padding = '1rem 2rem';
+            msg.style.borderRadius = '16px';
+            msg.style.fontWeight = 'bold';
+            msg.style.fontSize = '1.1rem';
+            msg.style.boxShadow = '0 2px 12px #0003';
+            msg.style.zIndex = '9999';
+            document.body.appendChild(msg);
+            setTimeout(function(){ msg.remove(); }, 1600);
         }
         // Función para ampliar imagen (zoom)
         function ampliarImagen(img) {

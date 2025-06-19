@@ -25,6 +25,7 @@
             <li><a href="ropa interior masculina.html"><img src="iconos/ropa interior masculina.png" alt="Ropa Interior de Caballero" class="icono-nav"> Ropa Interior de Caballero</a></li>
             <li><a href="ofertas.html"><img src="iconos/ofertas.png" alt="Ofertas de temporada" class="icono-nav"> Ofertas de temporada</a></li>
             <li><a href="compras.html"><img src="iconos/carrito.png" alt="Compras" class="icono-nav"> Compras</a></li>
+            <li><a href="redes.html"><img src="iconos/redes sociales.png" alt="Redes Sociales" class="icono-nav"> Redes</a></li>
         </ul>
     </nav>
     <h2 style="color:#eab676; font-size:2rem; margin-bottom:2rem; text-align:center;">Carteras</h2>
@@ -38,14 +39,6 @@
             <button onclick="agregarACompras('Cartera Rosada','CAR001',1200,'carteras/Cartera Rosada.jpg','Elegante cartera rosada, ideal para cualquier ocasión.')">Agregar a compras</button>
         </div>
     </div>
-    <footer style="width:100vw; background:#111; color:#eab676; text-align:center; padding:1.2rem 0 0.5rem 0; position:fixed; left:0; bottom:0; z-index:1200; font-size:1rem; box-shadow:0 -2px 12px #0004; display:flex; align-items:center; justify-content:center;">
-        <span style="font-size:0.95rem; color:#eab676; flex:1; text-align:center;">&copy; 2025 AshLing Boutique. Marca registrada. Todos los derechos reservados.</span>
-        <div style="display:flex; gap:1.2rem; justify-content:flex-end; align-items:center; margin-right:2.5vw;">
-            <a href="https://www.facebook.com/AshLingBoutique" target="_blank" title="Facebook" style="display:inline-block; width:28px; height:28px; background:#fff; border-radius:50%; padding:2px;"><img src="iconos/facebook.png" alt="Facebook" style="width:24px; height:24px; display:block;"></a>
-            <a href="https://www.instagram.com/ashling.boutique" target="_blank" title="Instagram" style="display:inline-block; width:28px; height:28px; background:#fff; border-radius:50%; padding:2px;"><img src="iconos/instagram.png" alt="Instagram" style="width:24px; height:24px; display:block;"></a>
-            <a href="https://www.tiktok.com/@ashling.boutique" target="_blank" title="TikTok" style="display:inline-block; width:28px; height:28px; background:#fff; border-radius:50%; padding:2px;"><img src="iconos/tiktok.png" alt="TikTok" style="width:24px; height:24px; display:block;"></a>
-        </div>
-    </footer>
     <script>
         function agregarACompras(nombre, codigo, precio, imagen, descripcion) {
             var productos = JSON.parse(localStorage.getItem('productosSeleccionados') || '[]');

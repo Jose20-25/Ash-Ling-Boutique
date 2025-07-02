@@ -49,6 +49,49 @@ document.addEventListener('DOMContentLoaded', function() {
             window.globalCart.updateCartUI();
         }
     }, 100);
+
+    // Mobile menu toggle functionality
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            
+            // Change icon between bars and X
+            const icon = menuToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close menu when clicking on a link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    }
 });
 
 // Newsletter form
@@ -74,50 +117,6 @@ document.querySelector('.newsletter-form').addEventListener('submit', function(e
             button.disabled = false;
         }, 3000);
     }, 1500);
-});
-
-// Mobile menu toggle
-const mobileMenu = document.querySelector('.mobile-menu');
-const navLinks = document.querySelector('.nav-links');
-
-// Función para alternar el menú móvil
-function toggleMobileMenu() {
-    navLinks.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
-    document.body.classList.toggle('menu-open');
-}
-
-// Función para cerrar el menú móvil
-function closeMobileMenu() {
-    navLinks.classList.remove('active');
-    mobileMenu.classList.remove('active');
-    document.body.classList.remove('menu-open');
-}
-
-// Event listener para el botón hamburguesa
-if (mobileMenu) {
-    mobileMenu.addEventListener('click', toggleMobileMenu);
-}
-
-// Cerrar menú al hacer clic en los enlaces
-if (navLinks) {
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
-    });
-}
-
-// Cerrar menú al hacer clic fuera de él
-document.addEventListener('click', function(e) {
-    if (!navLinks.contains(e.target) && !mobileMenu.contains(e.target)) {
-        closeMobileMenu();
-    }
-});
-
-// Cerrar menú al redimensionar la ventana
-window.addEventListener('resize', function() {
-    if (window.innerWidth > 768) {
-        closeMobileMenu();
-    }
 });
 
 // Parallax effect for hero section

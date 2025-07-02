@@ -1,5 +1,16 @@
 <!DOCTYPE html>
-<html lang="es">
+<ht                <li class="dropdown">
+                    <a href="#categorias" class="dropdown-toggle" aria-label="Categorías de productos" tabindex="0">
+                        Categorías <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-label="Categorías de productos">
+                        <li><a href="carteras.html" role="menuitem"><i class="fas fa-handbag" aria-hidden="true"></i> Carteras</a></li>
+                        <li><a href="ropa-caballero.html" role="menuitem"><i class="fas fa-user-tie" aria-hidden="true"></i> Ropa de Caballero</a></li>
+                        <li><a href="ropa-dama.html" role="menuitem"><i class="fas fa-female" aria-hidden="true"></i> Ropa de Dama</a></li>
+                        <li><a href="perfumes.html" role="menuitem"><i class="fas fa-spray-can" aria-hidden="true"></i> Perfumes</a></li>
+                        <li><a href="accesorios.html" role="menuitem"><i class="fas fa-gem" aria-hidden="true"></i> Accesorios</a></li>
+                    </ul>
+                </li>s">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,21 +27,24 @@
                 <img src="logo/logo.png" alt="AhsLing Boutique" style="height: 150px; width: auto; max-width: 180px; display: block;">
                 AhsLing Boutique
             </a>
-            <ul class="nav-links">
+
+            <!-- Hidden Navigation Menu -->
+            <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html#inicio">Inicio</a></li>
                 <li><a href="index.html#categorias">Categorías</a></li>
                 <li><a href="index.html#categorias">Productos</a></li>
-                <li><a href="#ofertas">Ofertas</a></li>
                 <li><a href="index.html#contacto">Contacto</a></li>
             </ul>
-            <div class="cart-icon" onclick="window.location.href='compras.html'" style="cursor: pointer;">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count">0</span>
-            </div>
-            <div class="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
+
+            <!-- Icons Container -->
+            <div class="header-icons">
+                <div class="menu-icon" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="cart-icon" onclick="window.location.href='compras.html'" style="cursor: pointer;">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
             </div>
         </nav>
     </header>

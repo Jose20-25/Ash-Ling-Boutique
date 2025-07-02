@@ -325,21 +325,24 @@
                 <img src="logo/logo.png" alt="AhsLing Boutique" style="height: 150px; width: auto; max-width: 180px; display: block;">
                 AhsLing Boutique
             </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Inicio</a></li>
+
+            <!-- Hidden Navigation Menu -->
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html#inicio">Inicio</a></li>
                 <li><a href="index.html#categorias">Categorías</a></li>
-                <li><a href="index.html#productos">Productos</a></li>
-                <li><a href="index.html#ofertas">Ofertas</a></li>
+                <li><a href="index.html#categorias">Productos</a></li>
                 <li><a href="index.html#contacto">Contacto</a></li>
             </ul>
-            <div class="cart-icon" onclick="location.reload()" style="cursor: pointer;">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count">0</span>
-            </div>
-            <div class="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
+
+            <!-- Icons Container -->
+            <div class="header-icons">
+                <div class="menu-icon" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="cart-icon" onclick="location.reload()" style="cursor: pointer;">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
             </div>
         </nav>
     </header>

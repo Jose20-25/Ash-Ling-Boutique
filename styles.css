@@ -19,7 +19,7 @@ body {
 
 /* Header */
 header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #000000 0%, #ecb510 100%);
     color: white;
     padding: 1rem 0;
     position: fixed;
@@ -31,7 +31,7 @@ header {
 }
 
 header.scrolled {
-    background: rgba(102, 126, 234, 0.95);
+    background: linear-gradient(135deg, #000000 0%, #ecb510 100%);
     backdrop-filter: blur(20px);
 }
 
@@ -70,7 +70,7 @@ nav {
 }
 
 .nav-links a:hover {
-    color: #ffd700;
+    color: #ffea00;
     transform: translateY(-2px);
 }
 
@@ -132,7 +132,7 @@ nav {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #ecb510 0%, #e94dd2 100%);
     height: 100vh;
     display: flex;
     align-items: center;
@@ -221,7 +221,7 @@ nav {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 3rem;
-    color: #333;
+    color: #000000;
     position: relative;
 }
 
@@ -233,7 +233,7 @@ nav {
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #e63cc1, #000000);
     border-radius: 2px;
 }
 
@@ -260,7 +260,7 @@ nav {
 
 .category-image {
     height: 200px;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #e928a6, #e1b515);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -348,7 +348,7 @@ nav {
 .product-price {
     font-size: 1.4rem;
     font-weight: 700;
-    color: #667eea;
+    color: #eb39ca;
     margin-bottom: 1rem;
 }
 
@@ -376,7 +376,7 @@ nav {
 }
 
 .add-to-cart:hover {
-    background: linear-gradient(45deg, #764ba2, #667eea);
+    background: linear-gradient(45deg, #f4d827, #667eea);
     transform: translateY(-2px);
 }
 
@@ -457,7 +457,7 @@ nav {
 
 .newsletter-button {
     padding: 15px 30px;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #ec41b0, #f3be41);
     color: white;
     border: none;
     border-radius: 50px;
@@ -468,7 +468,7 @@ nav {
 
 .newsletter-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 10px 20px rgba(233, 60, 158, 0.3);
 }
 
 /* Footer */
@@ -514,7 +514,7 @@ footer {
     display: inline-block;
     width: 40px;
     height: 40px;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #b2b2b2, #764ba2);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -524,7 +524,7 @@ footer {
 
 .social-links a:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 10px 20px rgba(17, 17, 17, 0.3);
 }
 
 .footer-bottom {

@@ -80,9 +80,44 @@ document.querySelector('.newsletter-form').addEventListener('submit', function(e
 const mobileMenu = document.querySelector('.mobile-menu');
 const navLinks = document.querySelector('.nav-links');
 
-mobileMenu.addEventListener('click', function() {
+// Función para alternar el menú móvil
+function toggleMobileMenu() {
     navLinks.classList.toggle('active');
-    this.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
+}
+
+// Función para cerrar el menú móvil
+function closeMobileMenu() {
+    navLinks.classList.remove('active');
+    mobileMenu.classList.remove('active');
+    document.body.classList.remove('menu-open');
+}
+
+// Event listener para el botón hamburguesa
+if (mobileMenu) {
+    mobileMenu.addEventListener('click', toggleMobileMenu);
+}
+
+// Cerrar menú al hacer clic en los enlaces
+if (navLinks) {
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+    });
+}
+
+// Cerrar menú al hacer clic fuera de él
+document.addEventListener('click', function(e) {
+    if (!navLinks.contains(e.target) && !mobileMenu.contains(e.target)) {
+        closeMobileMenu();
+    }
+});
+
+// Cerrar menú al redimensionar la ventana
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+        closeMobileMenu();
+    }
 });
 
 // Parallax effect for hero section

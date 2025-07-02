@@ -60,6 +60,33 @@
     gap: 20px;
   }
 }
+
+/* Mejoras adicionales para móvil */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1rem;
+    }
+    
+    .logo img {
+        height: 40px;
+        max-width: 50px;
+    }
+    
+    nav.container {
+        padding: 0 10px;
+    }
+    
+    .cart-icon {
+        font-size: 1.2rem;
+    }
+    
+    .cart-count {
+        width: 18px;
+        height: 18px;
+        font-size: 0.7rem;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -184,6 +211,8 @@ nav {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
 }
 
 .mobile-menu span {
@@ -191,7 +220,21 @@ nav {
     height: 3px;
     background: white;
     margin: 3px 0;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+/* Animación del menú hamburguesa */
+.mobile-menu.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.mobile-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 /* Hero Section */
@@ -2055,6 +2098,7 @@ footer {
     color: #999;
 }
 
+/* Products Section */
 .ropa-dama .products-section {
     padding: 60px 0;
     background: #f8f9fa;
@@ -2692,7 +2736,6 @@ footer {
 .accesorios .modal-add-to-cart {
     width: 100%;
     padding: 15px;
-    margin-bottom: 15px;
 }
 
 .accesorios .modal-favorite-btn {
@@ -2733,9 +2776,34 @@ footer {
 @media (max-width: 480px) {
     .accesorios .accesorios-grid {
         grid-template-columns: 1fr;
-    }
+          }
 
     .accesorios .accesorio-image {
         height: 200px;
     }
+}
+
+/* Prevenir scroll cuando el menú móvil está abierto */
+body.menu-open {
+    overflow: hidden;
+}
+
+/* Overlay para el menú móvil */
+.nav-links::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.nav-links.active::before {
+    opacity: 1;
+    visibility: visible;
 }

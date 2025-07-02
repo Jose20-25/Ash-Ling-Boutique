@@ -16,9 +16,20 @@
                 <img src="logo/logo.png" alt="AhsLing Boutique" style="height: 150px; width: auto; max-width: 180px; display: block;">
                 AhsLing Boutique
             </a>
-            <ul class="nav-links">
+            <ul class="nav-links" role="navigation" aria-label="Menú principal">
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#categorias">Categorías</a></li>
+                <li class="dropdown">
+                    <a href="#categorias" class="dropdown-toggle" aria-label="Menú de categorías" tabindex="0">
+                        Categorías <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-label="Categorías de productos">
+                        <li><a href="carteras.html" role="menuitem"><i class="fas fa-handbag" aria-hidden="true"></i> Carteras</a></li>
+                        <li><a href="ropa-caballero.html" role="menuitem"><i class="fas fa-user-tie" aria-hidden="true"></i> Ropa de Caballero</a></li>
+                        <li><a href="ropa-dama.html" role="menuitem"><i class="fas fa-female" aria-hidden="true"></i> Ropa de Dama</a></li>
+                        <li><a href="perfumes.html" role="menuitem"><i class="fas fa-spray-can" aria-hidden="true"></i> Perfumes</a></li>
+                        <li><a href="accesorios.html" role="menuitem"><i class="fas fa-gem" aria-hidden="true"></i> Accesorios</a></li>
+                    </ul>
+                </li>
                 <li><a href="#categorias">Productos</a></li>
                 <li><a href="#ofertas">Ofertas</a></li>
                 <li><a href="#contacto">Contacto</a></li>

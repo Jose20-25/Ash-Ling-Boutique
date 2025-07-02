@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ropa de Dama - AhsLing Boutique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos para la página de ropa de dama */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 0;
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-nav a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: #764ba2;
+        }
+
+        .breadcrumb-nav span {
+            color: #999;
+        }
+
+        .filters-section {
+            padding: 40px 0;
+            background: white;
+            border-bottom: 1px solid #eee;
+        }
+
+        .filters-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .filter-select {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            background: white;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-select:focus {
+            border-color: #667eea;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            padding: 10px 45px 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            width: 250px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #667eea;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .products-section {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .products-count {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .view-toggle {
+            display: flex;
+            background: white;
+            border-radius: 25px;
+            padding: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .view-btn {
+            padding: 8px 15px;
+            border: none;
+            background: transparent;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .ropas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .ropa-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .ropa-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .ropa-image {
+            height: 280px;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ropa-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .ropa-card:hover .ropa-image img {
+            transform: scale(1.05);
+        }
+
+        .ropa-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ff6b6b;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .ropa-badge.nuevo {
+            background: #28a745;
+        }
+
+        .ropa-badge.oferta {
+            background: #ff6b6b;
+        }
+
+        .ropa-badge.popular {
+            background: #ffd700;
+            color: #333;
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .favorite-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .favorite-btn.active {
+            color: #ff6b6b;
+        }
+
+        .ropa-info {
+            padding: 25px;
+        }
+
+        .ropa-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .ropa-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .ropa-code {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .product-code {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #667eea;
+            background: #f0f2ff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 2px solid #e0e5ff;
+        }
+
+        .ropa-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .rating-stars {
+            color: #ffd700;
+        }
+
+        .rating-text {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .ropa-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            flex: 1;
+            padding: 12px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #764ba2, #667eea);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            padding: 12px 15px;
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Modal de vista rápida */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        /* Modal del carrito */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .cart-modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .cart-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid #eee;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .cart-modal-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .cart-modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+            transition: opacity 0.3s ease;
+        }
+
+        .cart-modal-close:hover {
+            opacity: 0.7;
+        }
+
+        .cart-items {
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-code {
+            color: #667eea;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quantity-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: #764ba2;
+        }
+
+        .quantity-number {
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .remove-item {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.3s ease;
+        }
+
+        .remove-item:hover {
+            background: #ff5252;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+
+        .cart-empty i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        .cart-footer {
+            padding: 20px 30px;
+            border-top: 1px solid #eee;
+            background: #f8f9fa;
+        }
+
+        .cart-total {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .whatsapp-btn {
+            width: 100%;
+            padding: 15px;
+            background: #25d366;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1da851;
+        }
+
+        .cart-count.active {
+            background: #ff6b6b;
+            transform: scale(1.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .filters-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .products-header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .carteras-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cartera-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <img src="logo/logo.png" alt="AhsLing Boutique">
+                AhsLing Boutique
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#categorias">Categorías</a></li>
+                <li><a href="index.html#categorias">Productos</a></li>
+                <li><a href="#ofertas">Ofertas</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+            <div class="cart-icon" onclick="window.location.href='compras.html'" style="cursor: pointer;">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-tshirt"></i> Ropa de Dama</h1>
+            <p>Moda femenina para cada ocasión</p>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="index.html">Inicio</a>
+                <span><i class="fas fa-chevron-right"></i></span>
+                <a href="index.html#categorias">Categorías</a>
+                <span><i class="fas fa-chevron-right"></i></span>
+                <span>Ropa de Dama</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <select class="filter-select" id="sortBy">
+                        <option value="">Ordenar por</option>
+                        <option value="newest">Más Nuevos</option>
+                        <option value="popular">Más Populares</option>
+                        <option value="rating">Mejor Valorados</option>
+                        <option value="name">Nombre A-Z</option>
+                    </select>
+                    <select class="filter-select" id="type">
+                        <option value="">Tipo de Prenda</option>
+                        <option value="blusa">Blusas</option>
+                        <option value="vestido">Vestidos</option>
+                        <option value="pantalon">Pantalones</option>
+                        <option value="falda">Faldas</option>
+                        <option value="chaqueta">Chaquetas</option>
+                    </select>
+                </div>
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="Buscar ropa..." id="searchInput">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-header">
+                <div class="products-count">
+                    Mostrando <span id="productCount">25</span> prendas
+                </div>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-btn" data-view="list">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="ropas-grid" id="ropasGrid">
+                <!-- Prenda 1 -->
+                <div class="ropa-card" data-type="blusa" data-category="elegante">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/T002.jpg" alt="Blusa Elegante Rosa">
+                        <div class="ropa-badge nuevo">Nuevo</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Blusa Elegante Rosa</h3>
+                        <p class="ropa-description">Blusa elegante de manga larga con detalles sofisticados, perfecta para ocasiones especiales y el trabajo.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: T002</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(124 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prenda 2 -->
+                <div class="ropa-card" data-type="blusa" data-category="casual">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/T004.jpg" alt="Blusa Casual Estampada">
+                        <div class="ropa-badge popular">Popular</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Blusa Casual Estampada</h3>
+                        <p class="ropa-description">Blusa cómoda con estampado moderno, ideal para el día a día y salidas casuales con amigas.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: T004</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(198 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prenda 3 -->
+                <div class="ropa-card" data-type="blusa" data-category="elegante">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/T007.jpg" alt="Blusa Profesional">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Blusa Profesional</h3>
+                        <p class="ropa-description">Blusa clásica de corte profesional, perfecta para el ambiente laboral y reuniones importantes.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: T007</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(167 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prenda 4 -->
+                <div class="ropa-card" data-type="blusa" data-category="juvenil">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/T009.jpg" alt="Blusa Juvenil Moderna">
+                        <div class="ropa-badge nuevo">Nuevo</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Blusa Juvenil Moderna</h3>
+                        <p class="ropa-description">Blusa con diseño moderno y fresco, ideal para jóvenes que buscan estilo y comodidad.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: T009</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(89 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prenda 5 -->
+                <div class="ropa-card" data-type="blusa" data-category="casual">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/T010.jpg" alt="Blusa Cómoda Diaria">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Blusa Cómoda Diaria</h3>
+                        <p class="ropa-description">Blusa versátil y cómoda para el uso diario, perfecta para combinar con cualquier outfit.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: T010</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(203 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prenda 6 -->
+                <div class="ropa-card" data-type="blusa" data-category="elegante">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/T013.jpg" alt="Blusa Elegante Nocturna">
+                        <div class="ropa-badge popular">Popular</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Blusa Elegante Nocturna</h3>
+                        <p class="ropa-description">Blusa sofisticada con detalles únicos, perfecta para eventos nocturnos y cenas especiales.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: T013</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(145 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prenda 7 -->
+                <div class="ropa-card" data-type="blusa" data-category="casual">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/T014.jpg" alt="Blusa Deportiva">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Blusa Deportiva</h3>
+                        <p class="ropa-description">Blusa cómoda y fresca, ideal para actividades deportivas y looks casuales del fin de semana.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: T014</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(112 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prenda 8 -->
+                <div class="ropa-card" data-type="blusa" data-category="elegante">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/T016.jpg" alt="Blusa Ejecutiva Premium">
+                        <div class="ropa-badge popular">Popular</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Blusa Ejecutiva Premium</h3>
+                        <p class="ropa-description">Blusa de alta calidad con corte impecable, diseñada para la mujer ejecutiva moderna.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: T016</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(234 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prenda 9 -->
+                <div class="ropa-card" data-type="blusa" data-category="juvenil">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/T018.jpg" alt="Blusa Juvenil Fashion">
+                        <div class="ropa-badge nuevo">Nuevo</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Blusa Juvenil Fashion</h3>
+                        <p class="ropa-description">Blusa juvenil con diseño fashion y moderno, perfecta para jóvenes que buscan un estilo único y actual.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: T018</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(145 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prenda 10 -->
+                <div class="ropa-card" data-type="blusa" data-category="casual">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/T020.jpg" alt="Blusa Casual Cómoda">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Blusa Casual Cómoda</h3>
+                        <p class="ropa-description">Blusa súper cómoda para uso diario, con tela suave y corte relajado para máxima comodidad.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: T020</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(89 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prenda 11 -->
+                <div class="ropa-card" data-type="blusa" data-category="elegante">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/T022.jpg" alt="Blusa Elegante Noche">
+                        <div class="ropa-badge popular">Popular</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Blusa Elegante Noche</h3>
+                        <p class="ropa-description">Blusa sofisticada para eventos nocturnos, con detalles brillantes y corte elegante para lucir espectacular.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: T022</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(167 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prenda 12 -->
+                <div class="ropa-card" data-type="blusa" data-category="casual">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/T024.jpg" alt="Blusa Relax Fin de Semana">
+                        <div class="ropa-badge nuevo">Nuevo</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Blusa Relax Fin de Semana</h3>
+                        <p class="ropa-description">Blusa relajada perfecta para fines de semana, con corte holgado y tela transpirable para máximo confort.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: T024</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(112 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prenda 13 -->
+                <div class="ropa-card" data-type="blusa" data-category="juvenil">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/T025.jpg" alt="Blusa Trendy Juvenil">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Blusa Trendy Juvenil</h3>
+                        <p class="ropa-description">Blusa juvenil con estilo trendy y moderno, perfecta para seguir las últimas tendencias de la moda.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: T025</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(158 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prenda 14 -->
+                <div class="ropa-card" data-type="blusa" data-category="elegante">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/T026.jpg" alt="Blusa Premium Elegante">
+                        <div class="ropa-badge popular">Popular</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Blusa Premium Elegante</h3>
+                        <p class="ropa-description">Blusa premium de alta calidad con corte elegante y materiales de lujo, para ocasiones muy especiales.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: T026</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(234 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prenda 15 -->
+                <div class="ropa-card" data-type="blusa" data-category="casual">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/T027.jpg" alt="Blusa Básica Versátil">
+                        <div class="ropa-badge nuevo">Nuevo</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Blusa Básica Versátil</h3>
+                        <p class="ropa-description">Blusa básica y versátil que combina con todo, esencial en cualquier guardarropa femenino moderno.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: T027</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(97 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prenda 16 -->
+                <div class="ropa-card" data-type="blusa" data-category="elegante">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/T028.jpg" alt="Blusa Sofisticada">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Blusa Sofisticada</h3>
+                        <p class="ropa-description">Blusa con diseño sofisticado y detalles únicos, perfecta para mujeres que buscan elegancia y distinción.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: T028</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(189 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prenda 17 -->
+                <div class="ropa-card" data-type="blusa" data-category="juvenil">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/T029.jpg" alt="Blusa Fresca Juvenil">
+                        <div class="ropa-badge nuevo">Nuevo</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Blusa Fresca Juvenil</h3>
+                        <p class="ropa-description">Blusa fresca y juvenil con colores vibrantes, ideal para chicas jóvenes que aman la moda actual.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: T029</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(123 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vestido W001 -->
+                <div class="ropa-card" data-type="vestido" data-category="elegante">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/W001.jpg" alt="Vestido Elegante de Noche">
+                        <div class="ropa-badge popular">Popular</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Vestido Elegante de Noche</h3>
+                        <p class="ropa-description">Vestido sofisticado de noche con diseño único, perfecto para eventos especiales y galas.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: W001</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(189 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vestido W008 -->
+                <div class="ropa-card" data-type="vestido" data-category="elegante">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/W008.jpg" alt="Vestido Cocktail Moderno">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Vestido Cocktail Moderno</h3>
+                        <p class="ropa-description">Vestido moderno de cóctel con líneas elegantes, perfecto para eventos sociales y celebraciones.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: W008</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(203 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vestido W014 -->
+                <div class="ropa-card" data-type="vestido" data-category="casual">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/W014.jpg" alt="Vestido Casual Floral">
+                        <div class="ropa-badge nuevo">Nuevo</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Vestido Casual Floral</h3>
+                        <p class="ropa-description">Vestido cómodo con estampado floral, ideal para salidas casuales y paseos al aire libre.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: W014</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(167 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vestido W024 -->
+                <div class="ropa-card" data-type="vestido" data-category="elegante">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/W024.jpg" alt="Vestido Formal Ejecutivo">
+                        <div class="ropa-badge popular">Popular</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Vestido Formal Ejecutivo</h3>
+                        <p class="ropa-description">Vestido formal de corte ejecutivo, perfecto para reuniones de trabajo y eventos corporativos.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: W024</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(195 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vestido W025 -->
+                <div class="ropa-card" data-type="vestido" data-category="casual">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/W025.jpg" alt="Vestido Bohemio">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Vestido Bohemio</h3>
+                        <p class="ropa-description">Vestido de estilo bohemio con estampado único, ideal para festivales y ocasiones especiales relajadas.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: W025</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(128 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vestido W033 -->
+                <div class="ropa-card" data-type="vestido" data-category="elegante">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/W033.jpg" alt="Vestido de Gala">
+                        <div class="ropa-badge popular">Popular</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Vestido de Gala</h3>
+                        <p class="ropa-description">Vestido espectacular de gala con detalles de lujo, perfecto para eventos formales y celebraciones especiales.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: W033</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(267 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vestido W037 -->
+                <div class="ropa-card" data-type="vestido" data-category="juvenil">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/W037.jpg" alt="Vestido Juvenil Trendy">
+                        <div class="ropa-badge nuevo">Nuevo</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Vestido Juvenil Trendy</h3>
+                        <p class="ropa-description">Vestido juvenil con diseño moderno y trendy, perfecto para salidas con amigas y eventos sociales.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: W037</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(184 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vestido W039 -->
+                <div class="ropa-card" data-type="vestido" data-category="elegante">
+                    <div class="ropa-image">
+                        <img src="ropa de dama/W039.jpg" alt="Vestido Maxi Elegante">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="ropa-info">
+                        <h3 class="ropa-title">Vestido Maxi Elegante</h3>
+                        <p class="ropa-description">Vestido largo maxi con corte elegante, perfecto para eventos formales y ocasiones especiales de día.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: W039</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(156 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Vista Rápida -->
+    <div id="quickViewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Vista Rápida</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modalBody">
+                <!-- Contenido dinámico del modal -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AhsLing Boutique</h3>
+                    <p>Tu destino para la moda elegante y moderna. Nos especializamos en prendas únicas que resaltan tu personalidad y estilo.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <p><a href="index.html#inicio">Inicio</a></p>
+                    <p><a href="index.html#categorias">Categorías</a></p>
+                    <p><a href="index.html#categorias">Productos</a></p>
+                    <p><a href="#ofertas">Ofertas</a></p>
+                    <p><a href="#sobre-nosotros">Sobre Nosotros</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Atención al Cliente</h3>
+                    <p><a href="#ayuda">Centro de Ayuda</a></p>
+                    <p><a href="#envios">Envíos y Devoluciones</a></p>
+                    <p><a href="#tallas">Guía de Tallas</a></p>
+                    <p><a href="#cuidados">Cuidado de Prendas</a></p>
+                    <p><a href="#contacto">Contacto</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Calle Principal 123, Ciudad</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@ahslingboutique.com</p>
+                    <p><i class="fas fa-clock"></i> Lun - Sáb: 9:00 AM - 8:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AhsLing Boutique. Todos los derechos reservados. | Diseñado con ❤️ para mujeres elegantes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="cart-global.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Variables globales
+        let globalCart;
+
+        // Inicializar carrito global
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof ShoppingCart !== 'undefined') {
+                globalCart = new ShoppingCart();
+            }
+        });
+
+        // Toggle favoritos
+        function toggleFavorite(btn) {
+            const icon = btn.querySelector('i');
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                btn.classList.add('active');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                btn.classList.remove('active');
+            }
+        }
+
+        // Agregar al carrito usando el sistema global
+        function addToCart(btn) {
+            const card = btn.closest('.ropa-card');
+            const title = card.querySelector('.ropa-title').textContent;
+            const code = card.querySelector('.product-code').textContent;
+            const description = card.querySelector('.ropa-description').textContent;
+            const imageSrc = card.querySelector('.ropa-image img').src;
+            const category = card.dataset.category;
+            
+            // Definir precios según categoría y tipo de prenda
+            let price = 25.00; // Precio base
+            
+            if (title.toLowerCase().includes('vestido')) {
+                price = Math.random() * 20 + 35; // $35-55 para vestidos
+            } else if (category === 'elegante' || title.toLowerCase().includes('premium')) {
+                price = Math.random() * 15 + 30; // $30-45 para prendas elegantes
+            } else if (category === 'juvenil') {
+                price = Math.random() * 10 + 20; // $20-30 para prendas juveniles
+            } else {
+                price = Math.random() * 15 + 25; // $25-40 para casuales
+            }
+            
+            const product = {
+                id: code.replace('Código: ', ''),
+                name: title,
+                description: description,
+                price: Math.round(price * 100) / 100, // Redondear a 2 decimales
+                image: imageSrc,
+                category: 'Ropa de Dama'
+            };
+
+            // Usar el carrito global
+            if (globalCart) {
+                globalCart.addToCart(product);
+            }
+            
+            // Mostrar animación en el botón
+            btn.style.transform = 'scale(0.95)';
+            btn.style.background = '#28a745';
+            btn.innerHTML = '<i class="fas fa-check"></i> Agregado';
+            
+            setTimeout(() => {
+                btn.style.transform = '';
+                btn.style.background = '';
+                btn.innerHTML = '<i class="fas fa-cart-plus"></i> Agregar al Carrito';
+            }, 1500);
+        }
+
+        // Vista rápida
+        function quickView(btn) {
+            const card = btn.closest('.ropa-card');
+            const title = card.querySelector('.ropa-title').textContent;
+            const code = card.querySelector('.product-code').textContent;
+            const description = card.querySelector('.ropa-description').textContent;
+            const imageSrc = card.querySelector('.ropa-image img').src;
+            
+            const modal = document.getElementById('quickViewModal');
+            const modalBody = document.getElementById('modalBody');
+            
+            modalBody.innerHTML = `
+                <div style="padding: 30px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
+                        <div>
+                            <div style="height: 300px; border-radius: 10px; overflow: hidden;">
+                                <img src="${imageSrc}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </div>
+                        <div>
+                            <h2 style="margin-bottom: 15px;">${title}</h2>
+                            <p style="color: #666; margin-bottom: 20px; line-height: 1.6;">${description}</p>
+                            <div style="font-size: 1.2rem; font-weight: 600; color: #667eea; background: #f0f2ff; padding: 10px 20px; border-radius: 25px; margin-bottom: 25px; display: inline-block;">${code}</div>
+                            <button class="btn-primary add-to-cart" style="width: 100%; padding: 15px; margin-bottom: 15px;" onclick="addToCart(this); closeModal();">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" style="width: 100%; padding: 15px;" onclick="toggleFavorite(this)">
+                                <i class="fas fa-heart"></i> Agregar a Favoritos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+        }
+
+        // Cerrar modal
+        function closeModal() {
+            document.getElementById('quickViewModal').style.display = 'none';
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            const quickModal = document.getElementById('quickViewModal');
+            
+            if (event.target == quickModal) {
+                quickModal.style.display = 'none';
+            }
+        }
+
+        // Agregar eventos a los botones de agregar al carrito
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.add-to-cart').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    addToCart(this);
+                });
+            });
+        });
+
+        // Filtros y búsqueda (simplificados para ropa)
+        function filterProducts() {
+            const cards = document.querySelectorAll('.ropa-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                card.style.display = 'block';
+                visibleCount++;
+            });
+
+            document.getElementById('productCount').textContent = visibleCount;
+        }
+
+        // Toggle vista
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const view = this.dataset.view;
+                    const grid = document.getElementById('ropasGrid');
+                    
+                    if (view === 'list') {
+                        grid.style.gridTemplateColumns = '1fr';
+                    } else {
+                        grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

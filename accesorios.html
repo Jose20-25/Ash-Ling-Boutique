@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accesorios - AhsLing Boutique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos para la página de accesorios */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 0;
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-nav a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: #764ba2;
+        }
+
+        .breadcrumb-nav i {
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        .products-section {
+            padding: 60px 0;
+        }
+
+        .filters-bar {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .filters-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr auto;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .filter-select {
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .view-controls {
+            display: flex;
+            gap: 5px;
+        }
+
+        .view-btn {
+            padding: 10px;
+            border: 2px solid #e1e5e9;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn.active,
+        .view-btn:hover {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .products-count {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .accesorios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .accesorio-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .accesorio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .accesorio-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .accesorio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .accesorio-card:hover .accesorio-image img {
+            transform: scale(1.1);
+        }
+
+        .accesorio-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .accesorio-badge.nuevo {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        }
+
+        .accesorio-badge.popular {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .favorite-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .favorite-btn.active i {
+            color: #e74c3c;
+        }
+
+        .quick-view-btn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(102, 126, 234, 0.9);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .accesorio-card:hover .quick-view-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .accesorio-content {
+            padding: 25px;
+        }
+
+        .accesorio-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .accesorio-description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .product-code {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 20px;
+        }
+
+        .rating-stars .fas {
+            color: #ffd700;
+        }
+
+        .rating-stars .far {
+            color: #ddd;
+        }
+
+        .accesorio-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            flex: 1;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #e1e5e9;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        /* Modal estilos */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .filters-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .view-controls {
+                justify-self: center;
+            }
+
+            .accesorios-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .accesorio-content {
+                padding: 20px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .accesorios-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .accesorio-image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <img src="logo/logo.png" alt="AhsLing Boutique">
+                AhsLing Boutique
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#categorias">Categorías</a></li>
+                <li><a href="index.html#categorias">Productos</a></li>
+                <li><a href="index.html#ofertas">Ofertas</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+            <div class="cart-icon" onclick="window.location.href='compras.html'" style="cursor: pointer;">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Accesorios Elegantes</h1>
+            <p>Detalles únicos que complementan tu estilo personal</p>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="index.html">Inicio</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Accesorios</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <!-- Filters Bar -->
+            <div class="filters-bar">
+                <div class="filters-row">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Buscar accesorios...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <select id="sortBy" class="filter-select">
+                        <option value="">Ordenar por</option>
+                        <option value="name">Nombre A-Z</option>
+                        <option value="newest">Más recientes</option>
+                        <option value="popular">Más populares</option>
+                        <option value="rating">Mejor valorados</option>
+                    </select>
+                    <select id="category" class="filter-select">
+                        <option value="">Todas las categorías</option>
+                        <option value="joyas">Joyas</option>
+                        <option value="relojes">Relojes</option>
+                        <option value="lentes">Lentes</option>
+                        <option value="cinturones">Cinturones</option>
+                    </select>
+                    <select id="color" class="filter-select">
+                        <option value="">Todos los colores</option>
+                        <option value="dorado">Dorado</option>
+                        <option value="plateado">Plateado</option>
+                        <option value="negro">Negro</option>
+                        <option value="marron">Marrón</option>
+                    </select>
+                    <div class="view-controls">
+                        <button class="view-btn active" data-view="grid">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" data-view="list">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Header -->
+            <div class="products-header">
+                <h2>Nuestros Accesorios</h2>
+                <span class="products-count">Mostrando <span id="productCount">45</span> productos</span>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="accesorios-grid" id="accesoriosGrid">
+                <!-- Accesorio 1 -->
+                <div class="accesorio-card" data-category="joyas" data-color="dorado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0050-19.jpg" alt="Collar Elegante" loading="lazy">
+                        <span class="accesorio-badge nuevo">Nuevo</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Collar Elegante Dorado</h3>
+                        <p class="accesorio-description">Hermoso collar con detalles dorados, perfecto para ocasiones especiales y uso diario.</p>
+                        <span class="product-code">Código: ACC0050-19</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 2 -->
+                <div class="accesorio-card" data-category="joyas" data-color="plateado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0059-18.jpg" alt="Aretes Plateados" loading="lazy">
+                        <span class="accesorio-badge popular">Popular</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Aretes Plateados Modernos</h3>
+                        <p class="accesorio-description">Elegantes aretes con acabado plateado, ideales para complementar cualquier look.</p>
+                        <span class="product-code">Código: ACC0059-18</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 3 -->
+                <div class="accesorio-card" data-category="relojes" data-color="negro">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0068-19.jpg" alt="Reloj Clásico" loading="lazy">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Reloj Clásico Negro</h3>
+                        <p class="accesorio-description">Reloj elegante con correa negra, perfecto para el uso diario y ocasiones formales.</p>
+                        <span class="product-code">Código: ACC0068-19</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 4 -->
+                <div class="accesorio-card" data-category="lentes" data-color="negro">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0076-20.jpg" alt="Lentes de Sol" loading="lazy">
+                        <span class="accesorio-badge">Oferta</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Lentes de Sol Modernos</h3>
+                        <p class="accesorio-description">Lentes de sol con diseño moderno y protección UV, ideales para cualquier temporada.</p>
+                        <span class="product-code">Código: ACC0076-20</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 5 -->
+                <div class="accesorio-card" data-category="joyas" data-color="dorado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0093-19.jpg" alt="Pulsera Dorada" loading="lazy">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Pulsera Dorada Delicada</h3>
+                        <p class="accesorio-description">Hermosa pulsera con acabado dorado, perfecta para añadir elegancia a tu look.</p>
+                        <span class="product-code">Código: ACC0093-19</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 6 -->
+                <div class="accesorio-card" data-category="cinturones" data-color="marron">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0127-60.jpg" alt="Cinturón Clásico" loading="lazy">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Cinturón Clásico Marrón</h3>
+                        <p class="accesorio-description">Cinturón de cuero genuino con hebilla elegante, perfecto para looks formales y casuales.</p>
+                        <span class="product-code">Código: ACC0127-60</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick View Modal -->
+    <div id="quickViewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Vista Rápida</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modalBody">
+                <!-- Modal content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AhsLing Boutique</h3>
+                    <p>Tu destino para la moda elegante y moderna. Nos especializamos en prendas únicas que resaltan tu personalidad y estilo.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <p><a href="index.html#inicio">Inicio</a></p>
+                    <p><a href="index.html#categorias">Categorías</a></p>
+                    <p><a href="index.html#categorias">Productos</a></p>
+                    <p><a href="index.html#ofertas">Ofertas</a></p>
+                    <p><a href="index.html#sobre-nosotros">Sobre Nosotros</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Atención al Cliente</h3>
+                    <p><a href="#ayuda">Centro de Ayuda</a></p>
+                    <p><a href="#envios">Envíos</a></p>
+                    <p><a href="#tallas">Guía de Tallas</a></p>
+                    <p><a href="#cuidados">Cuidado de Prendas</a></p>
+                    <p><a href="#contacto">Contacto</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Calle Principal, San Jacinto</p>
+                    <p><i class="fas fa-phone"></i> +503 7741 8024</p>
+                    <p><i class="fas fa-envelope"></i> info@ahslingboutique.com</p>
+                    <p><i class="fas fa-clock"></i> Lun - Sáb: 9:00 AM - 8:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AhsLing Boutique. Todos los derechos reservados. | Diseñado con ❤️ para personas elegantes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="cart-global.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Funcionalidad específica de accesorios
+        
+        // Toggle favoritos
+        function toggleFavorite(btn) {
+            const icon = btn.querySelector('i');
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                btn.classList.add('active');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                btn.classList.remove('active');
+            }
+        }
+
+        // Vista rápida
+        function quickView(btn) {
+            const card = btn.closest('.accesorio-card');
+            const title = card.querySelector('.accesorio-title').textContent;
+            const code = card.querySelector('.product-code').textContent;
+            const description = card.querySelector('.accesorio-description').textContent;
+            const imageSrc = card.querySelector('.accesorio-image img').src;
+            
+            const modal = document.getElementById('quickViewModal');
+            const modalBody = document.getElementById('modalBody');
+            
+            modalBody.innerHTML = `
+                <div style="padding: 30px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
+                        <div>
+                            <div style="height: 300px; border-radius: 10px; overflow: hidden;">
+                                <img src="${imageSrc}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </div>
+                        <div>
+                            <h2 style="margin-bottom: 15px;">${title}</h2>
+                            <p style="color: #666; margin-bottom: 20px; line-height: 1.6;">${description}</p>
+                            <div style="font-size: 1.2rem; font-weight: 600; color: #667eea; background: #f0f2ff; padding: 10px 20px; border-radius: 25px; margin-bottom: 25px; display: inline-block;">${code}</div>
+                            <button class="btn-primary add-to-cart" style="width: 100%; padding: 15px; margin-bottom: 15px;" onclick="addToCartFromModal(this); closeModal();">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" style="width: 100%; padding: 15px;" onclick="toggleFavorite(this)">
+                                <i class="fas fa-heart"></i> Agregar a Favoritos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+        }
+
+        // Cerrar modal
+        function closeModal() {
+            document.getElementById('quickViewModal').style.display = 'none';
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            const quickModal = document.getElementById('quickViewModal');
+            
+            if (event.target == quickModal) {
+                quickModal.style.display = 'none';
+            }
+        }
+
+        // Función para agregar al carrito desde el modal
+        function addToCartFromModal(btn) {
+            // Obtener datos del modal
+            const modalBody = document.getElementById('modalBody');
+            const title = modalBody.querySelector('h2').textContent;
+            const codeElement = modalBody.querySelector('div[style*="color: #667eea"]');
+            const code = codeElement ? codeElement.textContent : '';
+            const description = modalBody.querySelector('p[style*="color: #666"]').textContent;
+            const imageSrc = modalBody.querySelector('img').src;
+            
+            // Determinar categoría del producto basado en el código o título
+            let category = 'otros';
+            const titleLower = title.toLowerCase();
+            const codeLower = code.toLowerCase();
+            
+            if (titleLower.includes('collar') || titleLower.includes('aretes') || titleLower.includes('pulsera') || titleLower.includes('joya')) {
+                category = 'joyas';
+            } else if (titleLower.includes('reloj')) {
+                category = 'relojes';
+            } else if (titleLower.includes('lentes') || titleLower.includes('gafas')) {
+                category = 'lentes';
+            } else if (titleLower.includes('cinturón') || titleLower.includes('cinturon')) {
+                category = 'cinturones';
+            }
+            
+            // Obtener precio basado en la categoría
+            let price = 15.00; // Precio base para accesorios
+            switch(category) {
+                case 'relojes':
+                    price = 45.00;
+                    break;
+                case 'joyas':
+                    price = 25.00;
+                    break;
+                case 'lentes':
+                    price = 35.00;
+                    break;
+                case 'cinturones':
+                    price = 20.00;
+                    break;
+                default:
+                    price = 15.00;
+            }
+            
+            const product = {
+                id: code.replace('Código: ', ''),
+                name: title,
+                code: code.replace('Código: ', ''),
+                description: description,
+                image: imageSrc,
+                price: price,
+                category: 'Accesorios'
+            };
+            
+            // Agregar al carrito global
+            if (typeof window.addToCartGlobal === 'function') {
+                window.addToCartGlobal(product);
+                
+                // Feedback visual
+                btn.innerHTML = '<i class="fas fa-check"></i> ¡Agregado!';
+                btn.style.background = 'linear-gradient(45deg, #4ecdc4, #44a08d)';
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-cart-plus"></i> Agregar al Carrito';
+                    btn.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
+                }, 1500);
+            } else {
+                console.error('Función addToCartGlobal no encontrada');
+                alert('Error al agregar al carrito. Por favor, recarga la página.');
+            }
+        }
+
+        // Filtros y búsqueda
+        document.getElementById('searchInput').addEventListener('input', function() {
+            filterProducts();
+        });
+
+        document.getElementById('sortBy').addEventListener('change', function() {
+            sortProducts();
+        });
+
+        document.getElementById('category').addEventListener('change', function() {
+            filterProducts();
+        });
+
+        document.getElementById('color').addEventListener('change', function() {
+            filterProducts();
+        });
+
+        // Función para agregar al carrito global
+        function addToCart(btn) {
+            const card = btn.closest('.accesorio-card');
+            const title = card.querySelector('.accesorio-title').textContent;
+            const code = card.querySelector('.product-code').textContent.replace('Código: ', '');
+            const description = card.querySelector('.accesorio-description').textContent;
+            const imageSrc = card.querySelector('.accesorio-image img').src;
+            
+            // Obtener precio basado en la categoría del accesorio
+            let price = 15.00; // Precio base para accesorios
+            const category = card.dataset.category;
+            
+            // Ajustar precio según la categoría
+            switch(category) {
+                case 'relojes':
+                    price = 45.00;
+                    break;
+                case 'joyas':
+                    price = 25.00;
+                    break;
+                case 'lentes':
+                    price = 35.00;
+                    break;
+                case 'cinturones':
+                    price = 20.00;
+                    break;
+                default:
+                    price = 15.00;
+            }
+            
+            const product = {
+                id: code,
+                name: title,
+                code: code,
+                description: description,
+                image: imageSrc,
+                price: price,
+                category: 'Accesorios'
+            };
+            
+            // Agregar al carrito global usando cart-global.js
+            if (typeof window.addToCartGlobal === 'function') {
+                window.addToCartGlobal(product);
+                
+                // Feedback visual
+                btn.innerHTML = '<i class="fas fa-check"></i> ¡Agregado!';
+                btn.style.background = 'linear-gradient(45deg, #4ecdc4, #44a08d)';
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-cart-plus"></i> Agregar al Carrito';
+                    btn.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
+                }, 2000);
+            } else {
+                console.error('Función addToCartGlobal no encontrada');
+                alert('Error al agregar al carrito. Por favor, recarga la página.');
+            }
+        }
+
+        // Agregar event listeners a todos los botones de agregar al carrito
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    addToCart(this);
+                });
+            });
+        });
+
+        // Filtros y búsqueda
+        document.getElementById('searchInput').addEventListener('input', function() {
+            filterProducts();
+        });
+
+        document.getElementById('sortBy').addEventListener('change', function() {
+            sortProducts();
+        });
+
+        document.getElementById('category').addEventListener('change', function() {
+            filterProducts();
+        });
+
+        document.getElementById('color').addEventListener('change', function() {
+            filterProducts();
+        });
+
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const categoryFilter = document.getElementById('category').value;
+            const colorFilter = document.getElementById('color').value;
+            const cards = document.querySelectorAll('.accesorio-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const title = card.querySelector('.accesorio-title').textContent.toLowerCase();
+                const description = card.querySelector('.accesorio-description').textContent.toLowerCase();
+                const category = card.dataset.category;
+                const color = card.dataset.color;
+
+                let showCard = true;
+
+                // Filtro de búsqueda
+                if (searchTerm && !title.includes(searchTerm) && !description.includes(searchTerm)) {
+                    showCard = false;
+                }
+
+                // Filtro de categoría
+                if (categoryFilter && category !== categoryFilter) {
+                    showCard = false;
+                }
+
+                // Filtro de color
+                if (colorFilter && color !== colorFilter) {
+                    showCard = false;
+                }
+
+                card.style.display = showCard ? 'block' : 'none';
+                if (showCard) visibleCount++;
+            });
+
+            document.getElementById('productCount').textContent = visibleCount;
+        }
+
+        function sortProducts() {
+            const sortBy = document.getElementById('sortBy').value;
+            const grid = document.getElementById('accesoriosGrid');
+            const cards = Array.from(grid.children);
+
+            cards.sort((a, b) => {
+                const titleA = a.querySelector('.accesorio-title').textContent;
+                const titleB = b.querySelector('.accesorio-title').textContent;
+
+                switch (sortBy) {
+                    case 'name':
+                        return titleA.localeCompare(titleB);
+                    case 'newest':
+                        return a.querySelector('.accesorio-badge')?.textContent === 'Nuevo' ? -1 : 1;
+                    case 'popular':
+                        return a.querySelector('.accesorio-badge')?.textContent === 'Popular' ? -1 : 1;
+                    case 'rating':
+                        const starsA = a.querySelectorAll('.rating-stars .fas').length;
+                        const starsB = b.querySelectorAll('.rating-stars .fas').length;
+                        return starsB - starsA;
+                    default:
+                        return 0;
+                }
+            });
+
+            cards.forEach(card => grid.appendChild(card));
+        }
+
+        // Toggle vista
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const view = this.dataset.view;
+                const grid = document.getElementById('accesoriosGrid');
+                
+                if (view === 'list') {
+                    grid.style.gridTemplateColumns = '1fr';
+                } else {
+                    grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

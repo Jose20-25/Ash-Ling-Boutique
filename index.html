@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AhsLing Boutique - Moda Elegante y Moderna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav class="container">
+            <a href="#" class="logo">
+                <img src="logo/logo.png" alt="AhsLing Boutique">
+                AhsLing Boutique
+            </a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#categorias">Categorías</a></li>
+                <li><a href="#categorias">Productos</a></li>
+                <li><a href="#ofertas">Ofertas</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="cart-icon" onclick="window.location.href='compras.html'" style="cursor: pointer;">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Descubre Tu Estilo Único</h1>
+            <p>Moda elegante y moderna para mujeres y hombres que buscan destacar con estilo y originalidad</p>
+            <a href="#categorias" class="cta-button">
+                <i class="fas fa-gem"></i> Explorar Colección
+            </a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categorias">
+        <div class="container">
+            <h2 class="section-title fade-in">Nuestras Categorías</h2>
+            <div class="categories-grid">
+                <div class="category-card fade-in" onclick="window.location.href='carteras.html'">
+                    <div class="category-image">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Carteras</h3>
+                        <p>Elegancia y funcionalidad en cada diseño</p>
+                    </div>
+                </div>
+                <div class="category-card fade-in" onclick="window.location.href='ropa-caballero.html'">
+                    <div class="category-image">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Ropa de Caballero</h3>
+                        <p>Estilo y distinción masculina</p>
+                    </div>
+                </div>
+                <div class="category-card fade-in" onclick="window.location.href='ropa-dama.html'">
+                    <div class="category-image">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Ropa de Dama</h3>
+                        <p>Moda femenina para cada ocasión</p>
+                    </div>
+                </div>
+                <div class="category-card fade-in" onclick="window.location.href='perfumes.html'">
+                    <div class="category-image">
+                        <i class="fas fa-spray-can"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Perfumes</h3>
+                        <p>Fragancias únicas para tu personalidad</p>
+                    </div>
+                </div>
+                <div class="category-card fade-in" onclick="window.location.href='accesorios.html'">
+                    <div class="category-image">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Accesorios</h3>
+                        <p>Detalles que marcan la diferencia</p>
+                    </div>
+                </div>
+                <div class="category-card fade-in">
+                    <div class="category-image">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Promociones de Temporada</h3>
+                        <p>Ofertas especiales y descuentos únicos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title fade-in">Lo que Dicen Nuestras Clientas</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Increíble calidad y diseños únicos. Siempre encuentro lo que busco para lucir elegante en cualquier ocasión."
+                    </p>
+                    <div class="testimonial-author">María González</div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "El servicio al cliente es excepcional y los productos llegan en perfectas condiciones. ¡Altamente recomendado!"
+                    </p>
+                    <div class="testimonial-author">Ana Rodríguez</div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "AhsLing Boutique se ha convertido en mi tienda favorita. Moda moderna a precios accesibles."
+                    </p>
+                    <div class="testimonial-author">Carmen López</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2 class="section-title fade-in">Mantente al Día</h2>
+            <p class="fade-in">Suscríbete a nuestro newsletter y recibe las últimas novedades, ofertas exclusivas y consejos de moda.</p>
+            <form class="newsletter-form fade-in">
+                <input type="email" class="newsletter-input" placeholder="Tu correo electrónico" required>
+                <button type="submit" class="newsletter-button">
+                    <i class="fas fa-envelope"></i> Suscribirse
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AhsLing Boutique</h3>
+                    <p>Tu destino para la moda elegante y moderna. Nos especializamos en prendas únicas que resaltan tu personalidad y estilo.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <p><a href="#inicio">Inicio</a></p>
+                    <p><a href="#categorias">Categorías</a></p>
+                    <p><a href="#categorias">Productos</a></p>
+                    <p><a href="#ofertas">Ofertas</a></p>
+                    <p><a href="#sobre-nosotros">Sobre Nosotros</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Atención al Cliente</h3>
+                    <p><a href="#ayuda">Centro de Ayuda</a></p>
+                    <p><a href="#envios">Envíos</a></p>
+                    <p><a href="#tallas">Guía de Tallas</a></p>
+                    <p><a href="#cuidados">Cuidado de Prendas</a></p>
+                    <p><a href="#contacto">Contacto</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Calle Principal,San Jacinto</p>
+                    <p><i class="fas fa-phone"></i> +503 7741 8024</p>
+                    <p><i class="fas fa-envelope"></i> info@ahslingboutique.com</p>
+                    <p><i class="fas fa-clock"></i> Lun - Sáb: 9:00 AM - 8:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AhsLing Boutique. Todos los derechos reservados. | Estilos con ❤️ para mujeres y hombres elegantes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="cart-global.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

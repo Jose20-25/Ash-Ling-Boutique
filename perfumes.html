@@ -1,0 +1,2140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfumes - AhsLing Boutique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos para la página de perfumes */
+        .page-header {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 0;
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-nav a {
+            color: #ff9a9e;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: #fecfef;
+        }
+
+        .breadcrumb-nav span {
+            color: #999;
+        }
+
+        .filters-section {
+            padding: 40px 0;
+            background: white;
+            border-bottom: 1px solid #eee;
+        }
+
+        .filters-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .filter-select {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            background: white;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-select:focus {
+            border-color: #ff9a9e;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            padding: 10px 45px 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            width: 250px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #ff9a9e;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .products-section {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .products-count {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .view-toggle {
+            display: flex;
+            background: white;
+            border-radius: 25px;
+            padding: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .view-btn {
+            padding: 8px 15px;
+            border: none;
+            background: transparent;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn.active {
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            color: white;
+        }
+
+        .perfumes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .perfume-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .perfume-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .perfume-image {
+            height: 280px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fecfef 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .perfume-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .perfume-card:hover .perfume-image img {
+            transform: scale(1.05);
+        }
+
+        .perfume-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ff6b6b;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .perfume-badge.nuevo {
+            background: #28a745;
+        }
+
+        .perfume-badge.exclusivo {
+            background: #6f42c1;
+        }
+
+        .perfume-badge.popular {
+            background: #ffd700;
+            color: #333;
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .favorite-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .favorite-btn.active {
+            color: #ff6b6b;
+        }
+
+        .perfume-info {
+            padding: 25px;
+        }
+
+        .perfume-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .perfume-brand {
+            color: #ff9a9e;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .perfume-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .perfume-code {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .product-code {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ff9a9e;
+            background: #fff0f5;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 2px solid #ffe5ec;
+        }
+
+        .perfume-notes {
+            margin-bottom: 15px;
+        }
+
+        .notes-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .notes-list {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .perfume-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .rating-stars {
+            color: #ffd700;
+        }
+
+        .rating-text {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .perfume-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            flex: 1;
+            padding: 12px;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #fecfef, #ff9a9e);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            padding: 12px 15px;
+            background: white;
+            color: #ff9a9e;
+            border: 2px solid #ff9a9e;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #ff9a9e;
+            color: white;
+        }
+
+        /* Modal de vista rápida */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        /* Modal del carrito */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .cart-modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .cart-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid #eee;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .cart-modal-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .cart-modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+            transition: opacity 0.3s ease;
+        }
+
+        .cart-modal-close:hover {
+            opacity: 0.7;
+        }
+
+        .cart-items {
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-code {
+            color: #ff9a9e;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quantity-btn {
+            background: #ff9a9e;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: #fecfef;
+        }
+
+        .quantity-number {
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .remove-item {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.3s ease;
+        }
+
+        .remove-item:hover {
+            background: #ff5252;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+
+        .cart-empty i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        .cart-footer {
+            padding: 20px 30px;
+            border-top: 1px solid #eee;
+            background: #f8f9fa;
+        }
+
+        .cart-total {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .whatsapp-btn {
+            width: 100%;
+            padding: 15px;
+            background: #25d366;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1da851;
+        }
+
+        .cart-count.active {
+            background: #ff6b6b;
+            transform: scale(1.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .filters-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .products-header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .perfumes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .perfume-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <img src="logo/logo.png" alt="AhsLing Boutique">
+                AhsLing Boutique
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#categorias">Categorías</a></li>
+                <li><a href="index.html#categorias">Productos</a></li>
+                <li><a href="#ofertas">Ofertas</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+            <div class="cart-icon" onclick="window.location.href='compras.html'" style="cursor: pointer;">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-spray-can"></i> Perfumes</h1>
+            <p>Fragancias únicas para tu personalidad</p>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="index.html">Inicio</a>
+                <span><i class="fas fa-chevron-right"></i></span>
+                <a href="index.html#categorias">Categorías</a>
+                <span><i class="fas fa-chevron-right"></i></span>
+                <span>Perfumes</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <select class="filter-select" id="sortBy">
+                        <option value="">Ordenar por</option>
+                        <option value="newest">Más Nuevos</option>
+                        <option value="popular">Más Populares</option>
+                        <option value="rating">Mejor Valorados</option>
+                        <option value="name">Nombre A-Z</option>
+                    </select>
+                    <select class="filter-select" id="gender">
+                        <option value="">Género</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="unisex">Unisex</option>
+                    </select>
+                    <select class="filter-select" id="brand">
+                        <option value="">Marca</option>
+                        <option value="chanel">Chanel</option>
+                        <option value="dior">Dior</option>
+                        <option value="versace">Versace</option>
+                        <option value="carolina">Carolina Herrera</option>
+                        <option value="calvin">Calvin Klein</option>
+                    </select>
+                </div>
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="Buscar perfumes..." id="searchInput">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-header">
+                <div class="products-count">
+                    Mostrando <span id="productCount">27</span> perfumes
+                </div>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-btn" data-view="list">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="perfumes-grid" id="perfumesGrid">
+                <!-- Perfume 1 -->
+                <div class="perfume-card" data-gender="femenino" data-brand="chanel" data-category="elegante">
+                    <div class="perfume-image">
+                        <img src="perfumes/0045.jpg" alt="Elegance Noir">
+                        <div class="perfume-badge exclusivo">Exclusivo</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Elegance Noir</h3>
+                        <p class="perfume-brand">Chanel</p>
+                        <p class="perfume-description">Fragancia sofisticada con notas florales y toques de vainilla, perfecta para ocasiones especiales.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 0045</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Rosa • Corazón: Jazmín • Fondo: Vainilla</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(156 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 2 -->
+                <div class="perfume-card" data-gender="masculino" data-brand="dior" data-category="deportivo">
+                    <div class="perfume-image">
+                        <img src="perfumes/258872.jpg" alt="Ocean Breeze">
+                        <div class="perfume-badge nuevo">Nuevo</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Ocean Breeze</h3>
+                        <p class="perfume-brand">Dior</p>
+                        <p class="perfume-description">Fragancia fresca y vibrante con notas acuáticas, ideal para el hombre moderno y activo.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 258872</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Bergamota • Corazón: Lavanda • Fondo: Cedro</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(98 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 3 -->
+                <div class="perfume-card" data-gender="femenino" data-brand="versace" data-category="frutal">
+                    <div class="perfume-image">
+                        <img src="perfumes/258889.jpg" alt="Crystal Bloom">
+                        <div class="perfume-badge popular">Popular</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Crystal Bloom</h3>
+                        <p class="perfume-brand">Versace</p>
+                        <p class="perfume-description">Fragancia floral frutal con un toque de frescura, perfecta para el día a día.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 258889</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Limón • Corazón: Peonía • Fondo: Almizcle</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(203 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 4 -->
+                <div class="perfume-card" data-gender="unisex" data-brand="carolina" data-category="oriental">
+                    <div class="perfume-image">
+                        <img src="perfumes/258902.jpg" alt="Mystic Amber">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Mystic Amber</h3>
+                        <p class="perfume-brand">Carolina Herrera</p>
+                        <p class="perfume-description">Fragancia oriental unisex con notas cálidas y envolventes, ideal para la noche.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 258902</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Canela • Corazón: Ámbar • Fondo: Sándalo</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(87 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 5 -->
+                <div class="perfume-card" data-gender="masculino" data-brand="calvin" data-category="fresco">
+                    <div class="perfume-image">
+                        <img src="perfumes/261233.jpg" alt="Arctic Storm">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Arctic Storm</h3>
+                        <p class="perfume-brand">Calvin Klein</p>
+                        <p class="perfume-description">Fragancia masculina fresca con notas acuáticas, perfecta para el verano.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 261233</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Menta • Corazón: Eucalipto • Fondo: Vetiver</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(112 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 6 -->
+                <div class="perfume-card" data-gender="femenino" data-brand="dior" data-category="floral">
+                    <div class="perfume-image">
+                        <img src="perfumes/29838.jpg" alt="Garden Romance">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Garden Romance</h3>
+                        <p class="perfume-brand">Dior</p>
+                        <p class="perfume-description">Fragancia floral romántica con pétalos de rosa y toques de durazno.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 29838</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Durazno • Corazón: Rosa • Fondo: Pachulí</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(178 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 7 -->
+                <div class="perfume-card" data-gender="masculino" data-brand="versace" data-category="elegante">
+                    <div class="perfume-image">
+                        <img src="perfumes/313-0.jpg" alt="Royal Blue">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Royal Blue</h3>
+                        <p class="perfume-brand">Versace</p>
+                        <p class="perfume-description">Fragancia masculina elegante con notas especiadas, ideal para eventos formales.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 313-0</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Pimienta • Corazón: Geranio • Fondo: Oud</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(92 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 8 -->
+                <div class="perfume-card" data-gender="femenino" data-brand="chanel" data-category="dulce">
+                    <div class="perfume-image">
+                        <img src="perfumes/313599.jpg" alt="Sweet Dreams">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Sweet Dreams</h3>
+                        <p class="perfume-brand">Chanel</p>
+                        <p class="perfume-description">Fragancia dulce y envolvente con notas gourmand, perfecta para la mujer joven.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 313599</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Caramelo • Corazón: Violeta • Fondo: Vainilla</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(145 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 9 -->
+                <div class="perfume-card" data-gender="masculino" data-brand="calvin" data-category="fresco">
+                    <div class="perfume-image">
+                        <img src="perfumes/33024.jpg" alt="Midnight Force">
+                        <div class="perfume-badge nuevo">Nuevo</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Midnight Force</h3>
+                        <p class="perfume-brand">Calvin Klein</p>
+                        <p class="perfume-description">Fragancia masculina intensa con notas amaderadas y especiadas, ideal para la noche.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 33024</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Cardamomo • Corazón: Cedro • Fondo: Vetiver</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(89 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 10 -->
+                <div class="perfume-card" data-gender="femenino" data-brand="versace" data-category="floral">
+                    <div class="perfume-image">
+                        <img src="perfumes/3403-2.jpg" alt="Velvet Rose">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Velvet Rose</h3>
+                        <p class="perfume-brand">Versace</p>
+                        <p class="perfume-description">Fragancia femenina elegante con pétalos de rosa y toques suaves de almizclé.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 3403-2</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Rosa búlgara • Corazón: Iris • Fondo: Almizcle blanco</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(167 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 11 -->
+                <div class="perfume-card" data-gender="unisex" data-brand="carolina" data-category="oriental">
+                    <div class="perfume-image">
+                        <img src="perfumes/373584.jpg" alt="Golden Spice">
+                        <div class="perfume-badge exclusivo">Exclusivo</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Golden Spice</h3>
+                        <p class="perfume-brand">Carolina Herrera</p>
+                        <p class="perfume-description">Fragancia unisex oriental con especias doradas y notas cálidas envolventes.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 373584</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Azafrán • Corazón: Oud • Fondo: Ámbar gris</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(134 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 12 -->
+                <div class="perfume-card" data-gender="masculino" data-brand="dior" data-category="deportivo">
+                    <div class="perfume-image">
+                        <img src="perfumes/3850-4.jpg" alt="Urban Edge">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Urban Edge</h3>
+                        <p class="perfume-brand">Dior</p>
+                        <p class="perfume-description">Fragancia masculina moderna con notas urbanas y un toque deportivo.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 3850-4</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Limón verde • Corazón: Jengibre • Fondo: Musgo de roble</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(103 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 13 -->
+                <div class="perfume-card" data-gender="femenino" data-brand="chanel" data-category="dulce">
+                    <div class="perfume-image">
+                        <img src="perfumes/482165.jpg" alt="Blossom Dreams">
+                        <div class="perfume-badge popular">Popular</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Blossom Dreams</h3>
+                        <p class="perfume-brand">Chanel</p>
+                        <p class="perfume-description">Fragancia femenina dulce con flores de cerezo y notas gourmand delicadas.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 482165</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Flor de cerezo • Corazón: Azúcar • Fondo: Vainilla de Madagascar</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(201 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 14 -->
+                <div class="perfume-card" data-gender="masculino" data-brand="versace" data-category="elegante">
+                    <div class="perfume-image">
+                        <img src="perfumes/482202.jpg" alt="Noble Heritage">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Noble Heritage</h3>
+                        <p class="perfume-brand">Versace</p>
+                        <p class="perfume-description">Fragancia masculina elegante con herencia clásica y notas distinguidas.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 482202</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Bergamota italiana • Corazón: Tabaco • Fondo: Cuero</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(118 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 15 -->
+                <div class="perfume-card" data-gender="femenino" data-brand="dior" data-category="frutal">
+                    <div class="perfume-image">
+                        <img src="perfumes/513170.jpg" alt="Citrus Breeze">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Citrus Breeze</h3>
+                        <p class="perfume-brand">Dior</p>
+                        <p class="perfume-description">Fragancia femenina refrescante con cítricos vibrantes y brisa marina.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 513170</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Pomelo rosado • Corazón: Agua marina • Fondo: Cedro blanco</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(189 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 16 -->
+                <div class="perfume-card" data-gender="unisex" data-brand="calvin" data-category="fresco">
+                    <div class="perfume-image">
+                        <img src="perfumes/5302-4.jpg" alt="Pure Elements">
+                        <div class="perfume-badge nuevo">Nuevo</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Pure Elements</h3>
+                        <p class="perfume-brand">Calvin Klein</p>
+                        <p class="perfume-description">Fragancia unisex fresca con elementos puros de la naturaleza.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 5302-4</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Ozono • Corazón: Bambú • Fondo: Musgo acuático</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(95 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 17 -->
+                <div class="perfume-card" data-gender="femenino" data-brand="chanel" data-category="elegante">
+                    <div class="perfume-image">
+                        <img src="perfumes/547168.jpg" alt="Midnight Elegance">
+                        <div class="perfume-badge exclusivo">Exclusivo</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Midnight Elegance</h3>
+                        <p class="perfume-brand">Chanel</p>
+                        <p class="perfume-description">Fragancia femenina elegante para la noche con notas misteriosas.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 547168</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Bergamota negra • Corazón: Orquídea • Fondo: Ámbar negro</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(172 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 18 -->
+                <div class="perfume-card" data-gender="masculino" data-brand="carolina" data-category="deportivo">
+                    <div class="perfume-image">
+                        <img src="perfumes/58060-8.jpg" alt="Active Sport">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Active Sport</h3>
+                        <p class="perfume-brand">Carolina Herrera</p>
+                        <p class="perfume-description">Fragancia masculina deportiva con energía y frescura para el hombre activo.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 58060-8</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Menta glacial • Corazón: Té verde • Fondo: Madera flotante</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(127 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 19 -->
+                <div class="perfume-card" data-gender="femenino" data-brand="versace" data-category="floral">
+                    <div class="perfume-image">
+                        <img src="perfumes/59314-22.jpg" alt="Spring Bouquet">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Spring Bouquet</h3>
+                        <p class="perfume-brand">Versace</p>
+                        <p class="perfume-description">Fragancia femenina floral que evoca un bouquet primaveral lleno de vida.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 59314-22</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Fresia • Corazón: Magnolia • Fondo: Madera de sándalo</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(214 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 20 -->
+                <div class="perfume-card" data-gender="masculino" data-brand="dior" data-category="elegante">
+                    <div class="perfume-image">
+                        <img src="perfumes/597096.jpg" alt="Distinguished Gentleman">
+                        <div class="perfume-badge popular">Popular</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Distinguished Gentleman</h3>
+                        <p class="perfume-brand">Dior</p>
+                        <p class="perfume-description">Fragancia masculina distinguida para el caballero moderno y sofisticado.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 597096</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Whisky • Corazón: Cedro rojo • Fondo: Pachulí</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(245 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 21 -->
+                <div class="perfume-card" data-gender="femenino" data-brand="calvin" data-category="dulce">
+                    <div class="perfume-image">
+                        <img src="perfumes/733011.jpg" alt="Cotton Candy">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Cotton Candy</h3>
+                        <p class="perfume-brand">Calvin Klein</p>
+                        <p class="perfume-description">Fragancia femenina dulce y juguetona con notas de algodón de azúcar.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 733011</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Algodón de azúcar • Corazón: Frambuesa • Fondo: Vainilla dulce</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(158 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 22 -->
+                <div class="perfume-card" data-gender="unisex" data-brand="chanel" data-category="oriental">
+                    <div class="perfume-image">
+                        <img src="perfumes/733875.jpg" alt="Mystic Woods">
+                        <div class="perfume-badge exclusivo">Exclusivo</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Mystic Woods</h3>
+                        <p class="perfume-brand">Chanel</p>
+                        <p class="perfume-description">Fragancia unisex misteriosa con maderas profundas y notas orientales.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 733875</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Incienso • Corazón: Madera de agar • Fondo: Ámbar gris</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(143 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 23 -->
+                <div class="perfume-card" data-gender="masculino" data-brand="versace" data-category="fresco">
+                    <div class="perfume-image">
+                        <img src="perfumes/73847-1.jpg" alt="Ocean Depths">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Ocean Depths</h3>
+                        <p class="perfume-brand">Versace</p>
+                        <p class="perfume-description">Fragancia masculina fresca que evoca las profundidades del océano.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 73847-1</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Sal marina • Corazón: Algas • Fondo: Deriva oceánica</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(116 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 24 -->
+                <div class="perfume-card" data-gender="femenino" data-brand="carolina" data-category="floral">
+                    <div class="perfume-image">
+                        <img src="perfumes/92047-4.jpg" alt="Eternal Bloom">
+                        <div class="perfume-badge nuevo">Nuevo</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Eternal Bloom</h3>
+                        <p class="perfume-brand">Carolina Herrera</p>
+                        <p class="perfume-description">Fragancia femenina floral eterna que florece en cada momento.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 92047-4</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Lirio • Corazón: Gardenia • Fondo: Madera de cedro</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(193 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 25 -->
+                <div class="perfume-card" data-gender="masculino" data-brand="calvin" data-category="elegante">
+                    <div class="perfume-image">
+                        <img src="perfumes/975061.jpg" alt="Executive Power">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Executive Power</h3>
+                        <p class="perfume-brand">Calvin Klein</p>
+                        <p class="perfume-description">Fragancia masculina elegante que proyecta poder y autoridad ejecutiva.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 975061</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Mandarina • Corazón: Caviar • Fondo: Cuero negro</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(137 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 26 -->
+                <div class="perfume-card" data-gender="femenino" data-brand="dior" data-category="dulce">
+                    <div class="perfume-image">
+                        <img src="perfumes/975870.jpg" alt="Sweet Temptation">
+                        <div class="perfume-badge popular">Popular</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Sweet Temptation</h3>
+                        <p class="perfume-brand">Dior</p>
+                        <p class="perfume-description">Fragancia femenina dulce y tentadora que despierta los sentidos.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 975870</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Miel • Corazón: Chocolate blanco • Fondo: Cachemira</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(226 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfume 27 -->
+                <div class="perfume-card" data-gender="unisex" data-brand="versace" data-category="oriental">
+                    <div class="perfume-image">
+                        <img src="perfumes/975924.jpg" alt="Zen Garden">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="perfume-info">
+                        <h3 class="perfume-title">Zen Garden</h3>
+                        <p class="perfume-brand">Versace</p>
+                        <p class="perfume-description">Fragancia unisex oriental que evoca la tranquilidad de un jardín zen.</p>
+                        <div class="perfume-code">
+                            <span class="product-code">Código: 975924</span>
+                        </div>
+                        <div class="perfume-notes">
+                            <div class="notes-title">Notas:</div>
+                            <div class="notes-list">Salida: Té blanco • Corazón: Loto • Fondo: Sándalo japonés</div>
+                        </div>
+                        <div class="perfume-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">(164 reseñas)</span>
+                        </div>
+                        <div class="perfume-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Vista Rápida -->
+    <div id="quickViewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Vista Rápida</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modalBody">
+                <!-- Contenido dinámico del modal -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AhsLing Boutique</h3>
+                    <p>Tu destino para la moda elegante y moderna. Nos especializamos en prendas únicas que resaltan tu personalidad y estilo.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <p><a href="index.html#inicio">Inicio</a></p>
+                    <p><a href="index.html#categorias">Categorías</a></p>
+                    <p><a href="index.html#categorias">Productos</a></p>
+                    <p><a href="#ofertas">Ofertas</a></p>
+                    <p><a href="#sobre-nosotros">Sobre Nosotros</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Atención al Cliente</h3>
+                    <p><a href="#ayuda">Centro de Ayuda</a></p>
+                    <p><a href="#envios">Envíos y Devoluciones</a></p>
+                    <p><a href="#tallas">Guía de Tallas</a></p>
+                    <p><a href="#cuidados">Cuidado de Prendas</a></p>
+                    <p><a href="#contacto">Contacto</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Calle Principal 123, Ciudad</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@ahslingboutique.com</p>
+                    <p><i class="fas fa-clock"></i> Lun - Sáb: 9:00 AM - 8:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AhsLing Boutique. Todos los derechos reservados. | Diseñado con ❤️ para mujeres elegantes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="cart-global.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Variables globales
+        let globalCart;
+
+        // Inicializar carrito global
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof ShoppingCart !== 'undefined') {
+                globalCart = new ShoppingCart();
+            }
+        });
+
+        // Toggle favoritos
+        function toggleFavorite(btn) {
+            const icon = btn.querySelector('i');
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                btn.classList.add('active');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                btn.classList.remove('active');
+            }
+        }
+
+        // Agregar al carrito usando el sistema global
+        function addToCart(btn) {
+            const card = btn.closest('.perfume-card');
+            const title = card.querySelector('.perfume-title').textContent;
+            const brand = card.querySelector('.perfume-brand').textContent;
+            const code = card.querySelector('.product-code').textContent;
+            const description = card.querySelector('.perfume-description').textContent;
+            const imageSrc = card.querySelector('.perfume-image img').src;
+            const gender = card.dataset.gender;
+            const category = card.dataset.category;
+            
+            // Definir precios según género y categoría
+            let price = 45.00; // Precio base para perfumes
+            
+            if (category === 'exclusivo' || card.querySelector('.perfume-badge.exclusivo')) {
+                price = Math.random() * 25 + 70; // $70-95 para exclusivos
+            } else if (gender === 'unisex') {
+                price = Math.random() * 15 + 55; // $55-70 para unisex
+            } else if (category === 'elegante') {
+                price = Math.random() * 20 + 60; // $60-80 para elegantes
+            } else {
+                price = Math.random() * 20 + 40; // $40-60 para otros
+            }
+            
+            const product = {
+                id: code.replace('Código: ', ''),
+                name: `${title} - ${brand}`,
+                description: description,
+                price: Math.round(price * 100) / 100, // Redondear a 2 decimales
+                image: imageSrc,
+                category: 'Perfumes'
+            };
+
+            // Usar el carrito global
+            if (globalCart) {
+                globalCart.addToCart(product);
+            }
+            
+            // Mostrar animación en el botón
+            btn.style.transform = 'scale(0.95)';
+            btn.style.background = '#28a745';
+            btn.innerHTML = '<i class="fas fa-check"></i> Agregado';
+            
+            setTimeout(() => {
+                btn.style.transform = '';
+                btn.style.background = '';
+                btn.innerHTML = '<i class="fas fa-cart-plus"></i> Agregar al Carrito';
+            }, 1500);
+        }
+
+        // Vista rápida
+        function quickView(btn) {
+            const card = btn.closest('.perfume-card');
+            const title = card.querySelector('.perfume-title').textContent;
+            const brand = card.querySelector('.perfume-brand').textContent;
+            const code = card.querySelector('.product-code').textContent;
+            const description = card.querySelector('.perfume-description').textContent;
+            const notes = card.querySelector('.notes-list')?.textContent || 'Notas no disponibles';
+            const imageSrc = card.querySelector('.perfume-image img').src;
+            
+            const modal = document.getElementById('quickViewModal');
+            const modalBody = document.getElementById('modalBody');
+            
+            modalBody.innerHTML = `
+                <div style="padding: 30px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
+                        <div>
+                            <div style="height: 300px; border-radius: 10px; overflow: hidden;">
+                                <img src="${imageSrc}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </div>
+                        <div>
+                            <h2 style="margin-bottom: 10px;">${title}</h2>
+                            <p style="color: #ff9a9e; font-weight: 600; margin-bottom: 15px;">${brand}</p>
+                            <p style="color: #666; margin-bottom: 20px; line-height: 1.6;">${description}</p>
+                            <div style="font-size: 1.2rem; font-weight: 600; color: #ff9a9e; background: #fff0f5; padding: 10px 20px; border-radius: 25px; margin-bottom: 25px; display: inline-block;">${code}</div>
+                            <div style="margin-bottom: 25px;">
+                                <label style="display: block; margin-bottom: 10px; font-weight: 600;">Notas de fragancia:</label>
+                                <div style="color: #666; font-size: 0.9rem; line-height: 1.4;">${notes}</div>
+                            </div>
+                            <button class="btn-primary add-to-cart" style="width: 100%; padding: 15px; margin-bottom: 15px;" onclick="addToCart(this); closeModal();">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" style="width: 100%; padding: 15px;" onclick="toggleFavorite(this)">
+                                <i class="fas fa-heart"></i> Agregar a Favoritos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+        }
+
+        // Cerrar modal
+        function closeModal() {
+            document.getElementById('quickViewModal').style.display = 'none';
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            const quickModal = document.getElementById('quickViewModal');
+            
+            if (event.target == quickModal) {
+                quickModal.style.display = 'none';
+            }
+        }
+
+        // Agregar eventos a los botones de agregar al carrito
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.add-to-cart').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    addToCart(this);
+                });
+            });
+
+            // Event listeners para filtros
+            const searchInput = document.getElementById('searchInput');
+            const sortBy = document.getElementById('sortBy');
+            const genderFilter = document.getElementById('gender');
+            const brandFilter = document.getElementById('brand');
+
+            if (searchInput) {
+                searchInput.addEventListener('input', filterProducts);
+            }
+            if (sortBy) {
+                sortBy.addEventListener('change', sortProducts);
+            }
+            if (genderFilter) {
+                genderFilter.addEventListener('change', filterProducts);
+            }
+            if (brandFilter) {
+                brandFilter.addEventListener('change', filterProducts);
+            }
+
+            // Toggle vista
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const view = this.dataset.view;
+                    const grid = document.getElementById('perfumesGrid');
+                    
+                    if (grid) {
+                        if (view === 'list') {
+                            grid.style.gridTemplateColumns = '1fr';
+                        } else {
+                            grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))';
+                        }
+                    }
+                });
+            });
+        });
+
+        // Filtros y búsqueda (adaptados para perfumes)
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
+            const genderFilter = document.getElementById('gender')?.value || '';
+            const brandFilter = document.getElementById('brand')?.value || '';
+            const cards = document.querySelectorAll('.perfume-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const title = card.querySelector('.perfume-title')?.textContent.toLowerCase() || '';
+                const brand = card.querySelector('.perfume-brand')?.textContent.toLowerCase() || '';
+                const description = card.querySelector('.perfume-description')?.textContent.toLowerCase() || '';
+                const gender = card.dataset.gender;
+                const cardBrand = card.dataset.brand;
+
+                let showCard = true;
+
+                // Filtro de búsqueda
+                if (searchTerm && !title.includes(searchTerm) && !brand.includes(searchTerm) && !description.includes(searchTerm)) {
+                    showCard = false;
+                }
+
+                // Filtro de género
+                if (genderFilter && gender !== genderFilter) {
+                    showCard = false;
+                }
+
+                // Filtro de marca
+                if (brandFilter && cardBrand !== brandFilter) {
+                    showCard = false;
+                }
+
+                card.style.display = showCard ? 'block' : 'none';
+                if (showCard) visibleCount++;
+            });
+
+            const productCountElement = document.getElementById('productCount');
+            if (productCountElement) {
+                productCountElement.textContent = visibleCount;
+            }
+        }
+
+        function sortProducts() {
+            const sortBy = document.getElementById('sortBy')?.value || '';
+            const grid = document.getElementById('perfumesGrid');
+            if (!grid) return;
+            
+            const cards = Array.from(grid.children);
+
+            cards.sort((a, b) => {
+                const titleA = a.querySelector('.perfume-title')?.textContent || '';
+                const titleB = b.querySelector('.perfume-title')?.textContent || '';
+
+                switch (sortBy) {
+                    case 'name':
+                        return titleA.localeCompare(titleB);
+                    case 'newest':
+                        return a.querySelector('.perfume-badge')?.textContent === 'Nuevo' ? -1 : 1;
+                    case 'popular':
+                        return a.querySelector('.perfume-badge')?.textContent === 'Popular' ? -1 : 1;
+                    case 'rating':
+                        const starsA = a.querySelectorAll('.rating-stars .fas').length;
+                        const starsB = b.querySelectorAll('.rating-stars .fas').length;
+                        return starsB - starsA;
+                    default:
+                        return 0;
+                }
+            });
+
+            cards.forEach(card => grid.appendChild(card));
+        }
+    </script>
+</body>
+</html>

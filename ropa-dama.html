@@ -7,604 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Estilos específicos para la página de ropa de dama */
-        .page-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 120px 0 80px;
-            text-align: center;
-            color: white;
-            margin-top: 70px;
-        }
-
-        .page-header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .page-header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        .breadcrumb {
-            background: #f8f9fa;
-            padding: 15px 0;
-        }
-
-        .breadcrumb-nav {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-        }
-
-        .breadcrumb-nav a {
-            color: #667eea;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .breadcrumb-nav a:hover {
-            color: #764ba2;
-        }
-
-        .breadcrumb-nav span {
-            color: #999;
-        }
-
-        .filters-section {
-            padding: 40px 0;
-            background: white;
-            border-bottom: 1px solid #eee;
-        }
-
-        .filters-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .filter-select {
-            padding: 10px 15px;
-            border: 2px solid #ddd;
-            border-radius: 25px;
-            background: white;
-            font-size: 0.9rem;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        .filter-select:focus {
-            border-color: #667eea;
-        }
-
-        .search-box {
-            position: relative;
-        }
-
-        .search-input {
-            padding: 10px 45px 10px 15px;
-            border: 2px solid #ddd;
-            border-radius: 25px;
-            width: 250px;
-            font-size: 0.9rem;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        .search-input:focus {
-            border-color: #667eea;
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #999;
-        }
-
-        .products-section {
-            padding: 60px 0;
-            background: #f8f9fa;
-        }
-
-        .products-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-
-        .products-count {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .view-toggle {
-            display: flex;
-            background: white;
-            border-radius: 25px;
-            padding: 5px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .view-btn {
-            padding: 8px 15px;
-            border: none;
-            background: transparent;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .view-btn.active {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-        }
-
-        .ropas-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .ropa-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .ropa-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-
-        .ropa-image {
-            height: 280px;
-            background: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ropa-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .ropa-card:hover .ropa-image img {
-            transform: scale(1.05);
-        }
-
-        .ropa-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: #ff6b6b;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .ropa-badge.nuevo {
-            background: #28a745;
-        }
-
-        .ropa-badge.oferta {
-            background: #ff6b6b;
-        }
-
-        .ropa-badge.popular {
-            background: #ffd700;
-            color: #333;
-        }
-
-        .favorite-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255,255,255,0.9);
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .favorite-btn:hover {
-            background: white;
-            transform: scale(1.1);
-        }
-
-        .favorite-btn.active {
-            color: #ff6b6b;
-        }
-
-        .ropa-info {
-            padding: 25px;
-        }
-
-        .ropa-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        .ropa-description {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .ropa-code {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .product-code {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #667eea;
-            background: #f0f2ff;
-            padding: 8px 15px;
-            border-radius: 20px;
-            border: 2px solid #e0e5ff;
-        }
-
-        .ropa-rating {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .rating-stars {
-            color: #ffd700;
-        }
-
-        .rating-text {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .ropa-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-primary {
-            flex: 1;
-            padding: 12px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(45deg, #764ba2, #667eea);
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            padding: 12px 15px;
-            background: white;
-            color: #667eea;
-            border: 2px solid #667eea;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-secondary:hover {
-            background: #667eea;
-            color: white;
-        }
-
-        /* Modal de vista rápida */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 0;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 30px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #999;
-            transition: color 0.3s ease;
-        }
-
-        .modal-close:hover {
-            color: #333;
-        }
-
-        /* Modal del carrito */
-        .cart-modal {
-            display: none;
-            position: fixed;
-            z-index: 10000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
-        }
-
-        .cart-modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 0;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .cart-modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 30px;
-            border-bottom: 1px solid #eee;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 15px 15px 0 0;
-        }
-
-        .cart-modal-header h2 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        .cart-modal-close {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: white;
-            transition: opacity 0.3s ease;
-        }
-
-        .cart-modal-close:hover {
-            opacity: 0.7;
-        }
-
-        .cart-items {
-            padding: 20px;
-        }
-
-        .cart-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-
-        .cart-item-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 10px;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        .cart-item-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .cart-item-info {
-            flex: 1;
-        }
-
-        .cart-item-title {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        .cart-item-code {
-            color: #667eea;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-        }
-
-        .cart-item-quantity {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .quantity-btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s ease;
-        }
-
-        .quantity-btn:hover {
-            background: #764ba2;
-        }
-
-        .quantity-number {
-            font-weight: 600;
-            min-width: 30px;
-            text-align: center;
-        }
-
-        .remove-item {
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: background 0.3s ease;
-        }
-
-        .remove-item:hover {
-            background: #ff5252;
-        }
-
-        .cart-empty {
-            text-align: center;
-            padding: 40px 20px;
-            color: #666;
-        }
-
-        .cart-empty i {
-            font-size: 3rem;
-            color: #ddd;
-            margin-bottom: 15px;
-        }
-
-        .cart-footer {
-            padding: 20px 30px;
-            border-top: 1px solid #eee;
-            background: #f8f9fa;
-        }
-
-        .cart-total {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .whatsapp-btn {
-            width: 100%;
-            padding: 15px;
-            background: #25d366;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .whatsapp-btn:hover {
-            background: #1da851;
-        }
-
-        .cart-count.active {
-            background: #ff6b6b;
-            transform: scale(1.2);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .page-header h1 {
-                font-size: 2rem;
-            }
-
-            .filters-container {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .search-input {
-                width: 100%;
-            }
-
-            .products-header {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .carteras-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cartera-actions {
-                flex-direction: column;
-            }
-        }
-    </style>
 </head>
-<body>
+<body class="ropa-dama">
     <!-- Header -->
     <header id="header">
         <nav class="container">
@@ -619,7 +23,7 @@
                 <li><a href="#ofertas">Ofertas</a></li>
                 <li><a href="index.html#contacto">Contacto</a></li>
             </ul>
-            <div class="cart-icon" onclick="window.location.href='compras.html'" style="cursor: pointer;">
+            <div class="cart-icon" onclick="window.location.href='compras.html'">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="cart-count">0</span>
             </div>
@@ -1589,6 +993,31 @@
                         </div>
                     </div>
                 </div>
+                        <h3 class="ropa-title">Vestido Maxi Elegante</h3>
+                        <p class="ropa-description">Vestido largo maxi con corte elegante, perfecto para eventos formales y ocasiones especiales de día.</p>
+                        <div class="ropa-code">
+                            <span class="product-code">Código: W039</span>
+                        </div>
+                        <div class="ropa-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(156 reseñas)</span>
+                        </div>
+                        <div class="ropa-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1737,21 +1166,21 @@
             const modalBody = document.getElementById('modalBody');
             
             modalBody.innerHTML = `
-                <div style="padding: 30px;">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
+                <div class="modal-content">
+                    <div class="modal-grid">
                         <div>
-                            <div style="height: 300px; border-radius: 10px; overflow: hidden;">
-                                <img src="${imageSrc}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover;">
+                            <div class="modal-image-container">
+                                <img src="${imageSrc}" alt="${title}" class="modal-product-image">
                             </div>
                         </div>
                         <div>
-                            <h2 style="margin-bottom: 15px;">${title}</h2>
-                            <p style="color: #666; margin-bottom: 20px; line-height: 1.6;">${description}</p>
-                            <div style="font-size: 1.2rem; font-weight: 600; color: #667eea; background: #f0f2ff; padding: 10px 20px; border-radius: 25px; margin-bottom: 25px; display: inline-block;">${code}</div>
-                            <button class="btn-primary add-to-cart" style="width: 100%; padding: 15px; margin-bottom: 15px;" onclick="addToCart(this); closeModal();">
+                            <h2 class="modal-product-title">${title}</h2>
+                            <p class="modal-product-description">${description}</p>
+                            <div class="modal-product-code">${code}</div>
+                            <button class="btn-primary add-to-cart modal-add-to-cart" onclick="addToCart(this); closeModal();">
                                 <i class="fas fa-cart-plus"></i> Agregar al Carrito
                             </button>
-                            <button class="btn-secondary" style="width: 100%; padding: 15px;" onclick="toggleFavorite(this)">
+                            <button class="btn-secondary modal-favorite-btn" onclick="toggleFavorite(this)">
                                 <i class="fas fa-heart"></i> Agregar a Favoritos
                             </button>
                         </div>
@@ -1776,30 +1205,95 @@
             }
         }
 
-        // Agregar eventos a los botones de agregar al carrito
+        // Filtros y búsqueda completos
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
+            const typeFilter = document.getElementById('type')?.value || '';
+            const cards = document.querySelectorAll('.ropa-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const title = card.querySelector('.ropa-title').textContent.toLowerCase();
+                const description = card.querySelector('.ropa-description').textContent.toLowerCase();
+                const type = card.dataset.type;
+
+                let showCard = true;
+
+                // Filtro de búsqueda
+                if (searchTerm && !title.includes(searchTerm) && !description.includes(searchTerm)) {
+                    showCard = false;
+                }
+
+                // Filtro de tipo de prenda
+                if (typeFilter && type !== typeFilter) {
+                    showCard = false;
+                }
+
+                card.style.display = showCard ? 'block' : 'none';
+                if (showCard) visibleCount++;
+            });
+
+            const productCountElement = document.getElementById('productCount');
+            if (productCountElement) {
+                productCountElement.textContent = visibleCount;
+            }
+        }
+
+        function sortProducts() {
+            const sortBy = document.getElementById('sortBy')?.value || '';
+            const grid = document.getElementById('ropasGrid');
+            if (!grid) return;
+            
+            const cards = Array.from(grid.children);
+
+            cards.sort((a, b) => {
+                const titleA = a.querySelector('.ropa-title').textContent;
+                const titleB = b.querySelector('.ropa-title').textContent;
+
+                switch (sortBy) {
+                    case 'name':
+                        return titleA.localeCompare(titleB);
+                    case 'newest':
+                        return a.querySelector('.ropa-badge')?.textContent === 'Nuevo' ? -1 : 1;
+                    case 'popular':
+                        return a.querySelector('.ropa-badge')?.textContent === 'Popular' ? -1 : 1;
+                    case 'rating':
+                        const starsA = a.querySelectorAll('.rating-stars .fas').length;
+                        const starsB = b.querySelectorAll('.rating-stars .fas').length;
+                        return starsB - starsA;
+                    default:
+                        return 0;
+                }
+            });
+
+            cards.forEach(card => grid.appendChild(card));
+        }
+
+        // Event listeners
         document.addEventListener('DOMContentLoaded', function() {
+            // Agregar eventos a los botones de agregar al carrito
             document.querySelectorAll('.add-to-cart').forEach(btn => {
                 btn.addEventListener('click', function() {
                     addToCart(this);
                 });
             });
-        });
 
-        // Filtros y búsqueda (simplificados para ropa)
-        function filterProducts() {
-            const cards = document.querySelectorAll('.ropa-card');
-            let visibleCount = 0;
+            // Event listeners para filtros
+            const searchInput = document.getElementById('searchInput');
+            const sortBy = document.getElementById('sortBy');
+            const typeFilter = document.getElementById('type');
 
-            cards.forEach(card => {
-                card.style.display = 'block';
-                visibleCount++;
-            });
+            if (searchInput) {
+                searchInput.addEventListener('input', filterProducts);
+            }
+            if (sortBy) {
+                sortBy.addEventListener('change', sortProducts);
+            }
+            if (typeFilter) {
+                typeFilter.addEventListener('change', filterProducts);
+            }
 
-            document.getElementById('productCount').textContent = visibleCount;
-        }
-
-        // Toggle vista
-        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle vista
             document.querySelectorAll('.view-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
@@ -1808,10 +1302,12 @@
                     const view = this.dataset.view;
                     const grid = document.getElementById('ropasGrid');
                     
-                    if (view === 'list') {
-                        grid.style.gridTemplateColumns = '1fr';
-                    } else {
-                        grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))';
+                    if (grid) {
+                        if (view === 'list') {
+                            grid.style.gridTemplateColumns = '1fr';
+                        } else {
+                            grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))';
+                        }
                     }
                 });
             });

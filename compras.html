@@ -594,15 +594,12 @@
         // Enviar consulta por WhatsApp
         function sendWhatsAppOrder() {
             const cart = getCartFromStorage();
-            
             if (!cart || cart.length === 0) {
                 alert('Tu carrito está vacío');
                 return;
             }
-            
             let message = '🛍️ *Consulta de Productos - AhsLing Boutique*\n\n';
             message += '¡Hola! Me interesan los siguientes productos:\n\n';
-            
             cart.forEach((item, index) => {
                 message += `${index + 1}. *${item.name}*\n`;
                 if (item.code) {
@@ -614,7 +611,6 @@
                 }
                 message += `\n`;
             });
-            
             message += '💰 *¿Podrían proporcionarme información sobre:*\n';
             message += '• Precios de cada producto\n';
             message += '• Disponibilidad en stock\n';
@@ -624,11 +620,15 @@
             message += '� *Mi ubicación para el envío es:*\n';
             message += '_[Por favor, comparte tu dirección aquí]_\n\n';
             message += '¡Gracias por su atención! 😊';
-            
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-            
             window.open(whatsappUrl, '_blank');
+            // Limpiar el carrito después de consultar
+            localStorage.removeItem('ahsling_cart');
+            if (cartInstance) {
+                cartInstance.cart = [];
+            }
+            loadCartPage();
         }
 
         // Vaciar carrito

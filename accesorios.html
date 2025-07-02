@@ -7,442 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Estilos específicos para la página de accesorios */
-        .page-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 120px 0 80px;
-            text-align: center;
-            color: white;
-            margin-top: 70px;
-        }
-
-        .page-header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .page-header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        .breadcrumb {
-            background: #f8f9fa;
-            padding: 15px 0;
-        }
-
-        .breadcrumb-nav {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-        }
-
-        .breadcrumb-nav a {
-            color: #667eea;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .breadcrumb-nav a:hover {
-            color: #764ba2;
-        }
-
-        .breadcrumb-nav i {
-            color: #999;
-            font-size: 0.8rem;
-        }
-
-        .products-section {
-            padding: 60px 0;
-        }
-
-        .filters-bar {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
-        }
-
-        .filters-row {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr auto;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .search-box {
-            position: relative;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 12px 45px 12px 15px;
-            border: 2px solid #e1e5e9;
-            border-radius: 10px;
-            font-size: 14px;
-            transition: border-color 0.3s ease;
-        }
-
-        .search-box input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .search-box i {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #999;
-        }
-
-        .filter-select {
-            padding: 12px 15px;
-            border: 2px solid #e1e5e9;
-            border-radius: 10px;
-            font-size: 14px;
-            background: white;
-            cursor: pointer;
-            transition: border-color 0.3s ease;
-        }
-
-        .filter-select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .view-controls {
-            display: flex;
-            gap: 5px;
-        }
-
-        .view-btn {
-            padding: 10px;
-            border: 2px solid #e1e5e9;
-            background: white;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .view-btn.active,
-        .view-btn:hover {
-            border-color: #667eea;
-            background: #667eea;
-            color: white;
-        }
-
-        .products-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .products-count {
-            color: #666;
-            font-size: 14px;
-        }
-
-        .accesorios-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .accesorio-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .accesorio-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .accesorio-image {
-            position: relative;
-            height: 250px;
-            overflow: hidden;
-        }
-
-        .accesorio-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .accesorio-card:hover .accesorio-image img {
-            transform: scale(1.1);
-        }
-
-        .accesorio-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .accesorio-badge.nuevo {
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
-        }
-
-        .accesorio-badge.popular {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-        }
-
-        .favorite-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .favorite-btn:hover {
-            background: white;
-            transform: scale(1.1);
-        }
-
-        .favorite-btn.active i {
-            color: #e74c3c;
-        }
-
-        .quick-view-btn {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            background: rgba(102, 126, 234, 0.9);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 25px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(10px);
-            backdrop-filter: blur(10px);
-        }
-
-        .accesorio-card:hover .quick-view-btn {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .accesorio-content {
-            padding: 25px;
-        }
-
-        .accesorio-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 8px;
-            line-height: 1.3;
-        }
-
-        .accesorio-description {
-            color: #666;
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        .product-code {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        .rating-stars {
-            display: flex;
-            gap: 2px;
-            margin-bottom: 20px;
-        }
-
-        .rating-stars .fas {
-            color: #ffd700;
-        }
-
-        .rating-stars .far {
-            color: #ddd;
-        }
-
-        .accesorio-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-primary {
-            flex: 1;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-secondary {
-            background: #f8f9fa;
-            color: #333;
-            border: 2px solid #e1e5e9;
-            padding: 10px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-secondary:hover {
-            border-color: #667eea;
-            color: #667eea;
-        }
-
-        /* Modal estilos */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-content {
-            background: white;
-            margin: 5% auto;
-            padding: 0;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 800px;
-            max-height: 80vh;
-            overflow-y: auto;
-            animation: modalSlideIn 0.3s ease;
-        }
-
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .modal-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px 30px;
-            border-radius: 20px 20px 0 0;
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 50%;
-            transition: background 0.3s ease;
-        }
-
-        .modal-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        @media (max-width: 768px) {
-            .filters-row {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .view-controls {
-                justify-self: center;
-            }
-
-            .accesorios-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 20px;
-            }
-
-            .accesorio-content {
-                padding: 20px;
-            }
-
-            .page-header h1 {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .accesorios-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .accesorio-image {
-                height: 200px;
-            }
-        }
-    </style>
 </head>
-<body>
+<body class="accesorios">
     <!-- Header -->
     <header id="header">
         <nav class="container">
@@ -457,7 +23,7 @@
                 <li><a href="index.html#ofertas">Ofertas</a></li>
                 <li><a href="index.html#contacto">Contacto</a></li>
             </ul>
-            <div class="cart-icon" onclick="window.location.href='compras.html'" style="cursor: pointer;">
+            <div class="cart-icon" onclick="window.location.href='compras.html'">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="cart-count">0</span>
             </div>
@@ -511,6 +77,8 @@
                         <option value="relojes">Relojes</option>
                         <option value="lentes">Lentes</option>
                         <option value="cinturones">Cinturones</option>
+                        <option value="bolsos">Bolsos</option>
+                        <option value="brazaletes">Brazaletes</option>
                     </select>
                     <select id="color" class="filter-select">
                         <option value="">Todos los colores</option>
@@ -518,6 +86,9 @@
                         <option value="plateado">Plateado</option>
                         <option value="negro">Negro</option>
                         <option value="marron">Marrón</option>
+                        <option value="beige">Beige</option>
+                        <option value="rosa">Rosa</option>
+                        <option value="azul">Azul</option>
                     </select>
                     <div class="view-controls">
                         <button class="view-btn active" data-view="grid">
@@ -533,7 +104,7 @@
             <!-- Products Header -->
             <div class="products-header">
                 <h2>Nuestros Accesorios</h2>
-                <span class="products-count">Mostrando <span id="productCount">45</span> productos</span>
+                <span class="products-count">Mostrando <span id="productCount">34</span> productos</span>
             </div>
 
             <!-- Products Grid -->
@@ -738,6 +309,945 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Accesorio 7 -->
+                <div class="accesorio-card" data-category="joyas" data-color="plateado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0059-19.jpg" alt="Aretes Plateados Elegantes" loading="lazy">
+                        <span class="accesorio-badge nuevo">Nuevo</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Aretes Plateados Elegantes</h3>
+                        <p class="accesorio-description">Hermosos aretes con acabado plateado y diseño sofisticado, perfectos para ocasiones especiales.</p>
+                        <span class="product-code">Código: ACC0059-19</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 8 -->
+                <div class="accesorio-card" data-category="joyas" data-color="dorado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0140-40.jpg" alt="Pulsera Dorada Premium" loading="lazy">
+                        <span class="accesorio-badge popular">Popular</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Pulsera Dorada Premium</h3>
+                        <p class="accesorio-description">Pulsera de lujo con acabado dorado, diseño exclusivo para mujeres que buscan elegancia.</p>
+                        <span class="product-code">Código: ACC0140-40</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 9 -->
+                <div class="accesorio-card" data-category="joyas" data-color="plateado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0146-18.jpg" alt="Collar Plateado Moderno" loading="lazy">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Collar Plateado Moderno</h3>
+                        <p class="accesorio-description">Collar con diseño moderno y acabado plateado, ideal para complementar outfits contemporáneos.</p>
+                        <span class="product-code">Código: ACC0146-18</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 10 -->
+                <div class="accesorio-card" data-category="joyas" data-color="dorado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0173-01.jpg" alt="Anillo Dorado Elegante" loading="lazy">
+                        <span class="accesorio-badge nuevo">Nuevo</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Anillo Dorado Elegante</h3>
+                        <p class="accesorio-description">Hermoso anillo con acabado dorado y diseño elegante, perfecto para ocasiones especiales.</p>
+                        <span class="product-code">Código: ACC0173-01</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 11 -->
+                <div class="accesorio-card" data-category="joyas" data-color="plateado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0174-19.jpg" alt="Pulsera Plateada Delicada" loading="lazy">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Pulsera Plateada Delicada</h3>
+                        <p class="accesorio-description">Pulsera delicada con acabado plateado, perfecta para uso diario y ocasiones casuales.</p>
+                        <span class="product-code">Código: ACC0174-19</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 12 -->
+                <div class="accesorio-card" data-category="joyas" data-color="dorado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0176-19.jpg" alt="Collar Dorado Clásico" loading="lazy">
+                        <span class="accesorio-badge popular">Popular</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Collar Dorado Clásico</h3>
+                        <p class="accesorio-description">Collar clásico con acabado dorado, un accesorio atemporal para cualquier ocasión.</p>
+                        <span class="product-code">Código: ACC0176-19</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 13 -->
+                <div class="accesorio-card" data-category="lentes" data-color="negro">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0189-19.jpg" alt="Lentes de Sol Premium" loading="lazy">
+                        <span class="accesorio-badge nuevo">Nuevo</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Lentes de Sol Premium</h3>
+                        <p class="accesorio-description">Lentes de sol de alta calidad con protección UV y diseño premium para máximo estilo.</p>
+                        <span class="product-code">Código: ACC0189-19</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 14 -->
+                <div class="accesorio-card" data-category="joyas" data-color="plateado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0191-19.jpg" alt="Aretes Plateados Largos" loading="lazy">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Aretes Plateados Largos</h3>
+                        <p class="accesorio-description">Elegantes aretes largos con acabado plateado, perfectos para eventos formales y ocasiones especiales.</p>
+                        <span class="product-code">Código: ACC0191-19</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 15 -->
+                <div class="accesorio-card" data-category="joyas" data-color="dorado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0225-01.jpg" alt="Conjunto Dorado Elegante" loading="lazy">
+                        <span class="accesorio-badge popular">Popular</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Conjunto Dorado Elegante</h3>
+                        <p class="accesorio-description">Hermoso conjunto de joyas doradas que incluye collar y aretes, perfecto para ocasiones especiales.</p>
+                        <span class="product-code">Código: ACC0225-01</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 16 -->
+                <div class="accesorio-card" data-category="joyas" data-color="plateado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0258-19.jpg" alt="Accesorio Plateado Moderno" loading="lazy">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Accesorio Plateado Moderno</h3>
+                        <p class="accesorio-description">Elegante accesorio con acabado plateado, perfecto para complementar tu estilo personal.</p>
+                        <span class="product-code">Código: ACC0258-19</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 17 -->
+                <div class="accesorio-card" data-category="joyas" data-color="dorado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0310-20.jpg" alt="Joya Dorada Exclusiva" loading="lazy">
+                        <span class="accesorio-badge">Nuevo</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Joya Dorada Exclusiva</h3>
+                        <p class="accesorio-description">Pieza única con diseño exclusivo y acabado dorado de alta calidad para ocasiones especiales.</p>
+                        <span class="product-code">Código: ACC0310-20</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 18 -->
+                <div class="accesorio-card" data-category="joyas" data-color="plateado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0340-9.jpg" alt="Accesorio Plateado Delicado" loading="lazy">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Accesorio Plateado Delicado</h3>
+                        <p class="accesorio-description">Hermoso accesorio con detalles delicados y acabado plateado, ideal para uso diario.</p>
+                        <span class="product-code">Código: ACC0340-9</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 19 -->
+                <div class="accesorio-card" data-category="joyas" data-color="dorado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0451-01.jpg" alt="Conjunto Dorado Premium" loading="lazy">
+                        <span class="accesorio-badge popular">Popular</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Conjunto Dorado Premium</h3>
+                        <p class="accesorio-description">Elegante conjunto de alta calidad con acabado dorado, perfecto para eventos especiales.</p>
+                        <span class="product-code">Código: ACC0451-01</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 20 -->
+                <div class="accesorio-card" data-category="joyas" data-color="plateado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0542-9.jpg" alt="Joya Plateada Moderna" loading="lazy">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Joya Plateada Moderna</h3>
+                        <p class="accesorio-description">Diseño moderno con acabado plateado brillante, ideal para complementar cualquier outfit.</p>
+                        <span class="product-code">Código: ACC0542-9</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 21 -->
+                <div class="accesorio-card" data-category="joyas" data-color="dorado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/2637-011.jpg" alt="Accesorio Dorado Elegante" loading="lazy">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Accesorio Dorado Elegante</h3>
+                        <p class="accesorio-description">Pieza elegante con detalles dorados refinados, perfecta para looks sofisticados.</p>
+                        <span class="product-code">Código: ACC2637-011</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 22 -->
+                <div class="accesorio-card" data-category="joyas" data-color="dorado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/2637-07.jpg" alt="Joya Dorada Refinada" loading="lazy">
+                        <span class="accesorio-badge">Oferta</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Joya Dorada Refinada</h3>
+                        <p class="accesorio-description">Diseño refinado con acabado dorado de lujo, ideal para ocasiones especiales y elegantes.</p>
+                        <span class="product-code">Código: ACC2637-07</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 23 -->
+                <div class="accesorio-card" data-category="joyas" data-color="plateado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/56100473.jpg" alt="Accesorio Plateado Único" loading="lazy">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Accesorio Plateado Único</h3>
+                        <p class="accesorio-description">Pieza única con diseño distintivo y acabado plateado brillante para un look especial.</p>
+                        <span class="product-code">Código: ACC56100473</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 24 -->
+                <div class="accesorio-card" data-category="joyas" data-color="dorado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/9735-19.jpg" alt="Conjunto Dorado Especial" loading="lazy">
+                        <span class="accesorio-badge popular">Popular</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Conjunto Dorado Especial</h3>
+                        <p class="accesorio-description">Hermoso conjunto con detalles especiales y acabado dorado para ocasiones importantes.</p>
+                        <span class="product-code">Código: ACC9735-19</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 25 -->
+                <div class="accesorio-card" data-category="bolsos" data-color="negro">
+                    <div class="accesorio-image">
+                        <img src="accesorios/B000-1-1.jpg" alt="Bolso Negro Elegante" loading="lazy">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Bolso Negro Elegante</h3>
+                        <p class="accesorio-description">Hermoso bolso negro con diseño elegante, perfecto para cualquier ocasión formal o casual.</p>
+                        <span class="product-code">Código: ACCB000-1-1</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 26 -->
+                <div class="accesorio-card" data-category="bolsos" data-color="negro">
+                    <div class="accesorio-image">
+                        <img src="accesorios/B000-1.jpg" alt="Bolso Clásico Negro" loading="lazy">
+                        <span class="accesorio-badge">Nuevo</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Bolso Clásico Negro</h3>
+                        <p class="accesorio-description">Diseño clásico y atemporal en color negro, ideal para el uso diario y profesional.</p>
+                        <span class="product-code">Código: ACCB000-1</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 27 -->
+                <div class="accesorio-card" data-category="bolsos" data-color="marron">
+                    <div class="accesorio-image">
+                        <img src="accesorios/B000-2.jpg" alt="Bolso Marrón Moderno" loading="lazy">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Bolso Marrón Moderno</h3>
+                        <p class="accesorio-description">Bolso en tono marrón con diseño moderno y funcional, perfecto para el día a día.</p>
+                        <span class="product-code">Código: ACCB000-2</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 28 -->
+                <div class="accesorio-card" data-category="bolsos" data-color="beige">
+                    <div class="accesorio-image">
+                        <img src="accesorios/B000-4.jpg" alt="Bolso Beige Elegante" loading="lazy">
+                        <span class="accesorio-badge popular">Popular</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Bolso Beige Elegante</h3>
+                        <p class="accesorio-description">Hermoso bolso en tono beige con acabados elegantes, versatil para múltiples ocasiones.</p>
+                        <span class="product-code">Código: ACCB000-4</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 29 -->
+                <div class="accesorio-card" data-category="bolsos" data-color="rosa">
+                    <div class="accesorio-image">
+                        <img src="accesorios/B000-5.jpg" alt="Bolso Rosa Delicado" loading="lazy">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Bolso Rosa Delicado</h3>
+                        <p class="accesorio-description">Delicado bolso en tono rosa con detalles femeninos, perfecto para looks románticos.</p>
+                        <span class="product-code">Código: ACCB000-5</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 30 -->
+                <div class="accesorio-card" data-category="bolsos" data-color="azul">
+                    <div class="accesorio-image">
+                        <img src="accesorios/B000-6.jpg" alt="Bolso Azul Moderno" loading="lazy">
+                        <span class="accesorio-badge">Oferta</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Bolso Azul Moderno</h3>
+                        <p class="accesorio-description">Moderno bolso en tono azul con diseño contemporáneo, ideal para un look fresco y actual.</p>
+                        <span class="product-code">Código: ACCB000-6</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 31 -->
+                <div class="accesorio-card" data-category="brazaletes" data-color="plateado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/BR0089.jpg" alt="Brazalete Plateado" loading="lazy">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Brazalete Plateado Elegante</h3>
+                        <p class="accesorio-description">Hermoso brazalete con acabado plateado y diseño elegante, perfecto para cualquier ocasión.</p>
+                        <span class="product-code">Código: ACCBR0089</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 32 -->
+                <div class="accesorio-card" data-category="brazaletes" data-color="dorado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/BR0101.jpg" alt="Brazalete Dorado" loading="lazy">
+                        <span class="accesorio-badge popular">Popular</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Brazalete Dorado Refinado</h3>
+                        <p class="accesorio-description">Elegante brazalete con acabado dorado de lujo, ideal para ocasiones especiales.</p>
+                        <span class="product-code">Código: ACCBR0101</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 33 -->
+                <div class="accesorio-card" data-category="joyas" data-color="plateado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/LSP0111.jpg" alt="Joya Plateada Especial" loading="lazy">
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Joya Plateada Especial</h3>
+                        <p class="accesorio-description">Joya especial con diseño único y acabado plateado brillante, para un look distintivo.</p>
+                        <span class="product-code">Código: ACCLSP0111</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorio 34 -->
+                <div class="accesorio-card" data-category="joyas" data-color="plateado">
+                    <div class="accesorio-image">
+                        <img src="accesorios/0059-18-1.jpg" alt="Aretes Plateados Únicos" loading="lazy">
+                        <span class="accesorio-badge">Nuevo</span>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(this)">
+                            <i class="fas fa-eye"></i> Vista rápida
+                        </button>
+                    </div>
+                    <div class="accesorio-content">
+                        <h3 class="accesorio-title">Aretes Plateados Únicos</h3>
+                        <p class="accesorio-description">Hermosos aretes con diseño único y acabado plateado, perfectos para destacar tu personalidad.</p>
+                        <span class="product-code">Código: ACC0059-18-1</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="accesorio-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                            <button class="btn-secondary" onclick="toggleFavorite(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -830,24 +1340,22 @@
             const modalBody = document.getElementById('modalBody');
             
             modalBody.innerHTML = `
-                <div style="padding: 30px;">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
-                        <div>
-                            <div style="height: 300px; border-radius: 10px; overflow: hidden;">
-                                <img src="${imageSrc}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover;">
-                            </div>
+                <div class="modal-grid">
+                    <div>
+                        <div class="modal-image-container">
+                            <img src="${imageSrc}" alt="${title}" class="modal-product-image">
                         </div>
-                        <div>
-                            <h2 style="margin-bottom: 15px;">${title}</h2>
-                            <p style="color: #666; margin-bottom: 20px; line-height: 1.6;">${description}</p>
-                            <div style="font-size: 1.2rem; font-weight: 600; color: #667eea; background: #f0f2ff; padding: 10px 20px; border-radius: 25px; margin-bottom: 25px; display: inline-block;">${code}</div>
-                            <button class="btn-primary add-to-cart" style="width: 100%; padding: 15px; margin-bottom: 15px;" onclick="addToCartFromModal(this); closeModal();">
-                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
-                            </button>
-                            <button class="btn-secondary" style="width: 100%; padding: 15px;" onclick="toggleFavorite(this)">
-                                <i class="fas fa-heart"></i> Agregar a Favoritos
-                            </button>
-                        </div>
+                    </div>
+                    <div>
+                        <h2 class="modal-product-title">${title}</h2>
+                        <p class="modal-product-description">${description}</p>
+                        <div class="modal-product-code">${code}</div>
+                        <button class="btn-primary add-to-cart modal-add-to-cart" onclick="addToCartFromModal(this); closeModal();">
+                            <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                        </button>
+                        <button class="btn-secondary modal-favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="fas fa-heart"></i> Agregar a Favoritos
+                        </button>
                     </div>
                 </div>
             `;

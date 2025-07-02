@@ -927,35 +927,916 @@ footer {
     font-weight: 600;
 }
 
-/* Responsive Design */
+/* =============================================================================
+   ESTILOS ESPECÍFICOS PARA LA PÁGINA DE ROPA DE CABALLERO
+   ============================================================================= */
+
+/* Page Header */
+.ropa-caballero .page-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 120px 0 80px;
+    text-align: center;
+    color: white;
+    margin-top: 70px;
+}
+
+.ropa-caballero .page-header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.ropa-caballero .page-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Breadcrumb */
+.ropa-caballero .breadcrumb {
+    background: #f8f9fa;
+    padding: 15px 0;
+}
+
+.ropa-caballero .breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.ropa-caballero .breadcrumb-nav a {
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.ropa-caballero .breadcrumb-nav a:hover {
+    color: #764ba2;
+}
+
+.ropa-caballero .breadcrumb-nav span {
+    color: #999;
+}
+
+/* Filters Section */
+.ropa-caballero .filters-section {
+    padding: 40px 0;
+    background: white;
+    border-bottom: 1px solid #eee;
+}
+
+.ropa-caballero .filters-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.ropa-caballero .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.ropa-caballero .filter-select {
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    background: white;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.ropa-caballero .filter-select:focus {
+    border-color: #667eea;
+}
+
+.ropa-caballero .search-box {
+    position: relative;
+}
+
+.ropa-caballero .search-input {
+    padding: 10px 45px 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    width: 250px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.ropa-caballero .search-input:focus {
+    border-color: #667eea;
+}
+
+.ropa-caballero .search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+/* Products Section */
+.ropa-caballero .products-section {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.ropa-caballero .products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.ropa-caballero .products-count {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.ropa-caballero .view-toggle {
+    display: flex;
+    background: white;
+    border-radius: 25px;
+    padding: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.ropa-caballero .view-btn {
+    padding: 8px 15px;
+    border: none;
+    background: transparent;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ropa-caballero .view-btn.active {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+}
+
+/* Ropa Grid */
+.ropa-caballero .ropa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.ropa-caballero .ropa-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.ropa-caballero .ropa-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.ropa-caballero .ropa-image {
+    height: 280px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.ropa-caballero .ropa-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.ropa-caballero .ropa-card:hover .ropa-image img {
+    transform: scale(1.05);
+}
+
+.ropa-caballero .ropa-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #ff6b6b;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.ropa-caballero .ropa-badge.nuevo {
+    background: #28a745;
+}
+
+.ropa-caballero .ropa-badge.oferta {
+    background: #ff6b6b;
+}
+
+.ropa-caballero .ropa-badge.popular {
+    background: #ffd700;
+    color: #333;
+}
+
+.ropa-caballero .favorite-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ropa-caballero .favorite-btn:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+.ropa-caballero .favorite-btn.active {
+    color: #ff6b6b;
+}
+
+.ropa-caballero .ropa-info {
+    padding: 25px;
+}
+
+.ropa-caballero .ropa-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.ropa-caballero .ropa-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.ropa-caballero .ropa-code {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.ropa-caballero .ropa-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.ropa-caballero .rating-stars {
+    color: #ffd700;
+}
+
+.ropa-caballero .rating-text {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.ropa-caballero .ropa-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Responsive para Ropa de Caballero */
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-
-    .mobile-menu {
-        display: flex;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero p {
-        font-size: 1.1rem;
-    }
-
-    .section-title {
+    .ropa-caballero .page-header h1 {
         font-size: 2rem;
     }
 
-    .newsletter-form {
+    .ropa-caballero .filters-container {
         flex-direction: column;
+        align-items: stretch;
     }
 
-    .categories-grid,
-    .products-grid {
+    .ropa-caballero .search-input {
+        width: 100%;
+    }
+
+    .ropa-caballero .products-header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .ropa-caballero .ropa-grid {
         grid-template-columns: 1fr;
+    }
+
+    .ropa-caballero .ropa-actions {
+        flex-direction: column;
+    }
+}
+
+/* ===== CARTERAS PAGE STYLES ===== */
+.carteras .page-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 120px 0 80px;
+    text-align: center;
+    color: white;
+    margin-top: 70px;
+}
+
+.carteras .page-header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.carteras .page-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.carteras .breadcrumb {
+    background: #f8f9fa;
+    padding: 15px 0;
+}
+
+.carteras .breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.carteras .breadcrumb-nav a {
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.carteras .breadcrumb-nav a:hover {
+    color: #764ba2;
+}
+
+.carteras .breadcrumb-nav span {
+    color: #999;
+}
+
+.carteras .filters-section {
+    padding: 40px 0;
+    background: white;
+    border-bottom: 1px solid #eee;
+}
+
+.carteras .filters-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.carteras .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.carteras .filter-select {
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    background: white;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.carteras .filter-select:focus {
+    border-color: #667eea;
+}
+
+.carteras .search-box {
+    position: relative;
+}
+
+.carteras .search-input {
+    padding: 10px 45px 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    width: 250px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.carteras .search-input:focus {
+    border-color: #667eea;
+}
+
+.carteras .search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.carteras .products-section {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.carteras .products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.carteras .products-count {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.carteras .view-toggle {
+    display: flex;
+    background: white;
+    border-radius: 25px;
+    padding: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.carteras .view-btn {
+    padding: 8px 15px;
+    border: none;
+    background: transparent;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carteras .view-btn.active {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+}
+
+.carteras .carteras-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.carteras .cartera-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.carteras .cartera-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.carteras .cartera-image {
+    height: 280px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.carteras .cartera-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.carteras .cartera-card:hover .cartera-image img {
+    transform: scale(1.05);
+}
+
+.carteras .cartera-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #ff6b6b;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.carteras .cartera-badge.nuevo {
+    background: #28a745;
+}
+
+.carteras .cartera-badge.oferta {
+    background: #ff6b6b;
+}
+
+.carteras .cartera-badge.popular {
+    background: #ffd700;
+    color: #333;
+}
+
+.carteras .favorite-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carteras .favorite-btn:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+.carteras .favorite-btn.active {
+    color: #ff6b6b;
+}
+
+.carteras .cartera-info {
+    padding: 25px;
+}
+
+.carteras .cartera-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.carteras .cartera-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.carteras .cartera-code {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.carteras .product-code {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #667eea;
+    background: #f0f2ff;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.carteras .cartera-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.carteras .rating-stars {
+    color: #ffd700;
+}
+
+.carteras .rating-text {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.carteras .cartera-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.carteras .btn-primary {
+    flex: 1;
+    padding: 12px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carteras .btn-primary:hover {
+    background: linear-gradient(45deg, #764ba2, #667eea);
+    transform: translateY(-2px);
+}
+
+.carteras .btn-secondary {
+    padding: 12px 15px;
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carteras .btn-secondary:hover {
+    background: #667eea;
+    color: white;
+}
+
+/* Modal de vista rápida */
+.carteras .modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+}
+
+.carteras .modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.carteras .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid #eee;
+}
+
+.carteras .modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.3s ease;
+}
+
+.carteras .modal-close:hover {
+    color: #333;
+}
+
+/* Modal del carrito */
+.carteras .cart-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+}
+
+.carteras .cart-modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.carteras .cart-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid #eee;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border-radius: 15px 15px 0 0;
+}
+
+.carteras .cart-modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.carteras .cart-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+    transition: opacity 0.3s ease;
+}
+
+.carteras .cart-modal-close:hover {
+    opacity: 0.7;
+}
+
+.carteras .cart-items {
+    padding: 20px;
+}
+
+.carteras .cart-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.carteras .cart-item:last-child {
+    border-bottom: none;
+}
+
+.carteras .cart-item-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.carteras .cart-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carteras .cart-item-info {
+    flex: 1;
+}
+
+.carteras .cart-item-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.carteras .cart-item-code {
+    color: #667eea;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.carteras .cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.carteras .quantity-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.carteras .quantity-btn:hover {
+    background: #764ba2;
+}
+
+.carteras .quantity-number {
+    font-weight: 600;
+    min-width: 30px;
+    text-align: center;
+}
+
+.carteras .remove-item {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background 0.3s ease;
+}
+
+.carteras .remove-item:hover {
+    background: #ff5252;
+}
+
+.carteras .cart-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+}
+
+.carteras .cart-empty i {
+    font-size: 3rem;
+    color: #ddd;
+    margin-bottom: 15px;
+}
+
+.carteras .cart-footer {
+    padding: 20px 30px;
+    border-top: 1px solid #eee;
+    background: #f8f9fa;
+}
+
+.carteras .cart-total {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.carteras .whatsapp-btn {
+    width: 100%;
+    padding: 15px;
+    background: #25d366;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.carteras .whatsapp-btn:hover {
+    background: #1da851;
+}
+
+.carteras .cart-count.active {
+    background: #ff6b6b;
+    transform: scale(1.2);
+}
+
+/* Responsive para carteras */
+@media (max-width: 768px) {
+    .carteras .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .carteras .filters-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .carteras .search-input {
+        width: 100%;
+    }
+
+    .carteras .products-header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .carteras .carteras-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .carteras .cartera-actions {
+        flex-direction: column;
     }
 }
 
@@ -991,5 +1872,794 @@ footer {
     to {
         transform: scale(4);
         opacity: 0;
+    }
+}
+
+/* ===== ROPA DE DAMA PAGE STYLES ===== */
+.ropa-dama .page-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 120px 0 80px;
+    text-align: center;
+    color: white;
+    margin-top: 70px;
+}
+
+.ropa-dama .page-header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.ropa-dama .page-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.ropa-dama .breadcrumb {
+    background: #f8f9fa;
+    padding: 15px 0;
+}
+
+.ropa-dama .breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.ropa-dama .breadcrumb-nav a {
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.ropa-dama .breadcrumb-nav a:hover {
+    color: #764ba2;
+}
+
+.ropa-dama .breadcrumb-nav span {
+    color: #999;
+}
+
+.ropa-dama .filters-section {
+    padding: 40px 0;
+    background: white;
+    border-bottom: 1px solid #eee;
+}
+
+.ropa-dama .filters-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.ropa-dama .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.ropa-dama .filter-select {
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    background: white;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.ropa-dama .filter-select:focus {
+    border-color: #667eea;
+}
+
+.ropa-dama .search-box {
+    position: relative;
+}
+
+.ropa-dama .search-input {
+    padding: 10px 45px 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    width: 250px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.ropa-dama .search-input:focus {
+    border-color: #667eea;
+}
+
+.ropa-dama .search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.ropa-dama .products-section {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.ropa-dama .products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.ropa-dama .products-count {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.ropa-dama .view-toggle {
+    display: flex;
+    background: white;
+    border-radius: 25px;
+    padding: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.ropa-dama .view-btn {
+    padding: 8px 15px;
+    border: none;
+    background: transparent;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ropa-dama .view-btn.active {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+}
+
+/* Ropa Grid */
+.ropa-dama .ropas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.ropa-dama .ropa-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.ropa-dama .ropa-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.ropa-dama .ropa-image {
+    height: 280px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.ropa-dama .ropa-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.ropa-dama .ropa-card:hover .ropa-image img {
+    transform: scale(1.05);
+}
+
+.ropa-dama .ropa-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #ff6b6b;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.ropa-dama .ropa-badge.nuevo {
+    background: #28a745;
+}
+
+.ropa-dama .ropa-badge.oferta {
+    background: #ff6b6b;
+}
+
+.ropa-dama .ropa-badge.popular {
+    background: #ffd700;
+    color: #333;
+}
+
+.ropa-dama .favorite-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ropa-dama .favorite-btn:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+.ropa-dama .favorite-btn.active {
+    color: #ff6b6b;
+}
+
+.ropa-dama .ropa-info {
+    padding: 25px;
+}
+
+.ropa-dama .ropa-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.ropa-dama .ropa-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.ropa-dama .ropa-code {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.ropa-dama .product-code {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #667eea;
+    background: #f0f2ff;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.ropa-dama .ropa-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.ropa-dama .rating-stars {
+    color: #ffd700;
+}
+
+.ropa-dama .rating-text {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.ropa-dama .ropa-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* ===============================================
+   ESTILOS ESPECÍFICOS PARA ACCESORIOS
+   =============================================== */
+.accesorios .page-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 120px 0 80px;
+    text-align: center;
+    color: white;
+    margin-top: 70px;
+}
+
+.accesorios .page-header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.accesorios .page-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.accesorios .breadcrumb {
+    background: #f8f9fa;
+    padding: 15px 0;
+}
+
+.accesorios .breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.accesorios .breadcrumb-nav a {
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.accesorios .breadcrumb-nav a:hover {
+    color: #764ba2;
+}
+
+.accesorios .breadcrumb-nav i {
+    color: #999;
+    font-size: 0.8rem;
+}
+
+.accesorios .products-section {
+    padding: 60px 0;
+}
+
+.accesorios .filters-bar {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.accesorios .filters-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    gap: 20px;
+    align-items: center;
+}
+
+.accesorios .search-box {
+    position: relative;
+}
+
+.accesorios .search-box input {
+    width: 100%;
+    padding: 12px 45px 12px 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.accesorios .search-box input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.accesorios .search-box i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.accesorios .filter-select {
+    padding: 12px 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.accesorios .filter-select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.accesorios .view-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.accesorios .view-btn {
+    padding: 10px;
+    border: 2px solid #e1e5e9;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.accesorios .view-btn.active,
+.accesorios .view-btn:hover {
+    border-color: #667eea;
+    background: #667eea;
+    color: white;
+}
+
+.accesorios .products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.accesorios .products-count {
+    color: #666;
+    font-size: 14px;
+}
+
+.accesorios .accesorios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.accesorios .accesorio-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.accesorios .accesorio-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.accesorios .accesorio-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.accesorios .accesorio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.accesorios .accesorio-card:hover .accesorio-image img {
+    transform: scale(1.1);
+}
+
+.accesorios .accesorio-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.accesorios .accesorio-badge.nuevo {
+    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+}
+
+.accesorios .accesorio-badge.popular {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+}
+
+.accesorios .favorite-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.accesorios .favorite-btn:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+.accesorios .favorite-btn.active i {
+    color: #e74c3c;
+}
+
+.accesorios .quick-view-btn {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(102, 126, 234, 0.9);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(10px);
+    backdrop-filter: blur(10px);
+}
+
+.accesorios .accesorio-card:hover .quick-view-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.accesorios .accesorio-content {
+    padding: 25px;
+}
+
+.accesorios .accesorio-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.accesorios .accesorio-description {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.accesorios .product-code {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.accesorios .rating-stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 20px;
+}
+
+.accesorios .rating-stars .fas {
+    color: #ffd700;
+}
+
+.accesorios .rating-stars .far {
+    color: #ddd;
+}
+
+.accesorios .accesorio-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.accesorios .btn-primary {
+    flex: 1;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.accesorios .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.accesorios .btn-secondary {
+    background: #f8f9fa;
+    color: #333;
+    border: 2px solid #e1e5e9;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.accesorios .btn-secondary:hover {
+    border-color: #667eea;
+    color: #667eea;
+}
+
+.accesorios .cart-icon {
+    cursor: pointer;
+}
+
+/* Modal específico para accesorios */
+.accesorios .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.accesorios .modal-content {
+    background: white;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.accesorios .modal-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 20px 20px 0 0;
+    position: relative;
+}
+
+.accesorios .modal-close {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.accesorios .modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.accesorios .modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+    padding: 30px;
+}
+
+.accesorios .modal-image-container {
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.accesorios .modal-product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.accesorios .modal-product-title {
+    margin-bottom: 15px;
+}
+
+.accesorios .modal-product-description {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.accesorios .modal-product-code {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #667eea;
+    background: #f0f2ff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    margin-bottom: 25px;
+    display: inline-block;
+}
+
+.accesorios .modal-add-to-cart {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.accesorios .modal-favorite-btn {
+    width: 100%;
+    padding: 15px;
+}
+
+/* Responsive para accesorios */
+@media (max-width: 768px) {
+    .accesorios .filters-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .accesorios .view-controls {
+        justify-self: center;
+    }
+
+    .accesorios .accesorios-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .accesorios .accesorio-content {
+        padding: 20px;
+    }
+
+    .accesorios .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .accesorios .modal-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .accesorios .accesorios-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .accesorios .accesorio-image {
+        height: 200px;
     }
 }

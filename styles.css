@@ -1,3 +1,65 @@
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 1200px) {
+  .container {
+    max-width: 1000px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 750px;
+  }
+  .categories-grid, .testimonials-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 98vw;
+    padding: 0 8px;
+  }
+  .categories-grid, .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  header nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .hero-content {
+    padding: 40px 10px;
+    text-align: center;
+  }
+  .category-card {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    max-width: 100vw;
+    padding: 0 2vw;
+  }
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+  .section-title {
+    font-size: 1.2rem;
+  }
+  .category-card, .testimonial-card {
+    padding: 10px;
+  }
+  .footer-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +71,8 @@ body {
     line-height: 1.6;
     color: #333;
     overflow-x: hidden;
+    background: linear-gradient(135deg, #f7c6e0 0%, #f9e7b4 100%);
+    /* Fondo mezcla rosado y dorado */
 }
 
 .container {
@@ -933,22 +997,28 @@ footer {
 
 /* Page Header */
 .ropa-caballero .page-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(45deg, #f72585 0%, #fbb040 100%);
     padding: 120px 0 80px;
     text-align: center;
-    color: white;
+    color: #fff;
     margin-top: 70px;
+    border-radius: 0 0 40px 40px;
+    box-shadow: 0 4px 24px 0 rgba(255,182,193,0.10);
 }
 
 .ropa-caballero .page-header h1 {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    color: #111;
+    text-shadow: 0 2px 8px rgba(255, 182, 193, 0.10);
 }
 
 .ropa-caballero .page-header p {
-    font-size: 1.2rem;
-    opacity: 0.9;
+    font-size: 1.4rem;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(255, 215, 0, 0.10);
+    opacity: 0.95;
 }
 
 /* Breadcrumb */
@@ -1248,7 +1318,7 @@ footer {
 
 /* ===== CARTERAS PAGE STYLES ===== */
 .carteras .page-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(45deg, #f72585 0%, #fbb040 100%);
     padding: 120px 0 80px;
     text-align: center;
     color: white;
@@ -1259,6 +1329,8 @@ footer {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    color: #111;
+    text-shadow: 0 2px 8px rgba(255, 182, 193, 0.10);
 }
 
 .carteras .page-header p {
@@ -1877,7 +1949,7 @@ footer {
 
 /* ===== ROPA DE DAMA PAGE STYLES ===== */
 .ropa-dama .page-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(45deg, #f72585 0%, #fbb040 100%);
     padding: 120px 0 80px;
     text-align: center;
     color: white;
@@ -1888,6 +1960,8 @@ footer {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    color: #111;
+    text-shadow: 0 2px 8px rgba(255, 182, 193, 0.10);
 }
 
 .ropa-dama .page-header p {
@@ -2171,7 +2245,7 @@ footer {
    ESTILOS ESPECÍFICOS PARA ACCESORIOS
    =============================================== */
 .accesorios .page-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(45deg, #f72585 0%, #fbb040 100%);
     padding: 120px 0 80px;
     text-align: center;
     color: white;
@@ -2182,6 +2256,8 @@ footer {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    color: #111;
+    text-shadow: 0 2px 8px rgba(255, 182, 193, 0.10);
 }
 
 .accesorios .page-header p {

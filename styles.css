@@ -1076,7 +1076,7 @@ footer {
 .accessory-card .clothing-image {
     position: relative;
     overflow: hidden;
-    height: 300px;
+    height: 250px;
 }
 
 .accessory-card .clothing-image img {
@@ -1090,31 +1090,32 @@ footer {
     transform: scale(1.1);
 }
 
+/* Estilos específicos para las imágenes de accesorios */
+.accesorio-image {
+    height: 250px; /* Altura reducida para accesorios */
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px 15px 0 0;
+}
+
+.accesorio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantiene proporción y llena el contenedor */
+    transition: transform 0.3s ease;
+    cursor: zoom-in;
+}
+
+.accesorio-card:hover .accesorio-image img {
+    transform: scale(1.08);
+}
+
 .accessory-card .clothing-info {
     padding: 25px;
-}
-
-.accessory-card .clothing-title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--texto-principal);
-}
-
-.accessory-card .clothing-type {
-    color: var(--dorado-luxury);
-    font-weight: 500;
-    margin-bottom: 12px;
-    font-size: 0.95rem;
-}
-
-.accessory-card .product-code {
-    background: var(--btn-primary);
-    color: var(--blanco-puro);
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
 }
 
 /* =============================================================================
@@ -1286,7 +1287,8 @@ footer {
     background: white;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border: 1px solid #f0f0f0;
     transition: all 0.3s ease;
     cursor: pointer;
 }
@@ -1297,49 +1299,52 @@ footer {
 }
 
 .ropa-caballero .ropa-image {
-    height: 280px;
+    height: 300px; /* Altura fija para consistencia */
     background: #f8f9fa;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
+    border-radius: 15px 15px 0 0;
+    pointer-events: auto;
 }
 
 .ropa-caballero .ropa-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Mantiene proporción y llena el contenedor */
     transition: transform 0.3s ease;
+    cursor: zoom-in;
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
 }
 
 .ropa-caballero .ropa-card:hover .ropa-image img {
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .ropa-caballero .ropa-badge {
     position: absolute;
     top: 15px;
     left: 15px;
-    background: #ff6b6b;
+    background: var(--rosado-vibrante);
     color: white;
     padding: 8px 15px;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 600;
+    z-index: 2;
 }
 
 .ropa-caballero .ropa-badge.nuevo {
-    background: #28a745;
-}
-
-.ropa-caballero .ropa-badge.oferta {
-    background: #ff6b6b;
+    background: var(--dorado-luxury);
+    color: var(--negro-elegante);
 }
 
 .ropa-caballero .ropa-badge.popular {
-    background: #ffd700;
-    color: #333;
+    background: var(--rosado-vibrante);
 }
 
 .ropa-caballero .favorite-btn {
@@ -1356,51 +1361,62 @@ footer {
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    z-index: 10;
+    pointer-events: auto;
 }
 
 .ropa-caballero .favorite-btn:hover {
-    background: white;
+    background: var(--rosado-vibrante);
+    color: white;
     transform: scale(1.1);
 }
 
 .ropa-caballero .favorite-btn.active {
-    color: #ff6b6b;
+    background: var(--rosado-vibrante);
+    color: white;
 }
 
 .ropa-caballero .ropa-info {
-    padding: 25px;
+    padding: 20px;
 }
 
 .ropa-caballero .ropa-title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 600;
-    margin-bottom: 8px;
-    color: #333;
+    margin-bottom: 10px;
+    color: var(--negro-elegante);
 }
 
 .ropa-caballero .ropa-description {
     color: #666;
     font-size: 0.9rem;
-    margin-bottom: 15px;
     line-height: 1.5;
+    margin-bottom: 15px;
 }
 
 .ropa-caballero .ropa-code {
-    display: flex;
-    align-items: center;
-    gap: 10px;
     margin-bottom: 15px;
+}
+
+.ropa-caballero .product-code {
+    background: var(--blanco-suave);
+    color: var(--negro-elegante);
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid var(--rosado-suave);
 }
 
 .ropa-caballero .ropa-rating {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
 .ropa-caballero .rating-stars {
-    color: #ffd700;
+    color: var(--dorado-luxury);
 }
 
 .ropa-caballero .rating-text {
@@ -1624,6 +1640,8 @@ footer {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+    cursor: zoom-in; /* AÑADIDO: cursor de zoom */
+    z-index: 1; /* AÑADIDO: z-index para imagen */
 }
 
 .carteras .cartera-card:hover .cartera-image img {
@@ -1669,6 +1687,8 @@ footer {
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    z-index: 10; /* AÑADIDO: z-index alto para botón */
+    pointer-events: auto; /* AÑADIDO: asegurar que el botón reciba clics */
 }
 
 .carteras .favorite-btn:hover {
@@ -1768,6 +1788,289 @@ footer {
 }
 
 /* Modal de vista rápida */
+
+/* ======================
+   ESTILOS ESPECÍFICOS PARA ACCESORIOS
+   ====================== */
+
+/* Fondo y sección principal para accesorios */
+body.accesorios .products-section {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+body.accesorios .products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+body.accesorios .carteras-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Filtros para accesorios */
+body.accesorios .filters-bar {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+}
+
+body.accesorios .filters-row {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+body.accesorios .search-box {
+    position: relative;
+    flex: 1;
+    min-width: 250px;
+}
+
+body.accesorios .search-box input {
+    width: 100%;
+    padding: 12px 45px 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+body.accesorios .search-box input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+body.accesorios .search-box i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+body.accesorios .filter-select {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    background: white;
+    color: #333;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+body.accesorios .filter-select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+body.accesorios .view-controls {
+    display: flex;
+    background: white;
+    border-radius: 25px;
+    padding: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border: 2px solid #e0e0e0;
+}
+
+body.accesorios .view-btn {
+    padding: 8px 15px;
+    border: none;
+    background: transparent;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #666;
+}
+
+body.accesorios .view-btn.active {
+    background: #667eea;
+    color: white;
+}
+
+body.accesorios .products-count {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Ajustes específicos para imágenes de accesorios usando clases cartera-* */
+body.accesorios .cartera-image {
+    height: 250px; /* Altura optimizada para accesorios */
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+body.accesorios .cartera-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    cursor: zoom-in;
+    z-index: 1;
+}
+
+body.accesorios .cartera-card:hover .cartera-image img {
+    transform: scale(1.05);
+}
+
+/* Badge específico para accesorios */
+body.accesorios .accesorio-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #ff6b6b;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    z-index: 5;
+}
+
+body.accesorios .accesorio-badge.nuevo {
+    background: #28a745;
+}
+
+body.accesorios .accesorio-badge.oferta {
+    background: #ff6b6b;
+}
+
+body.accesorios .accesorio-badge.popular {
+    background: #ffd700;
+    color: #333;
+}
+
+/* Tarjetas de accesorios */
+body.accesorios .cartera-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #f0f0f0;
+}
+
+body.accesorios .cartera-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+body.accesorios .cartera-info {
+    padding: 25px;
+}
+
+body.accesorios .cartera-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+body.accesorios .cartera-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+body.accesorios .product-code {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #667eea;
+    background: #f0f2ff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+body.accesorios .rating-stars {
+    color: #ffd700;
+    margin-bottom: 20px;
+}
+
+body.accesorios .cartera-actions {
+    display: flex;
+    gap: 10px;
+}
+
+body.accesorios .btn-primary {
+    flex: 1;
+    padding: 12px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+body.accesorios .btn-primary:hover {
+    background: linear-gradient(45deg, #764ba2, #667eea);
+    transform: translateY(-2px);
+}
+
+body.accesorios .btn-secondary {
+    padding: 12px 15px;
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+body.accesorios .btn-secondary:hover {
+    background: #667eea;
+    color: white;
+}
+
+body.accesorios .favorite-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+body.accesorios .favorite-btn:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+body.accesorios .favorite-btn.active {
+    color: #ff6b6b;
+}
+
+/* Modal de vista rápida */
 .carteras .modal {
     display: none;
     position: fixed;
@@ -1841,11 +2144,17 @@ footer {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.9);
-    display: flex;
+    display: none; /* Oculto por defecto */
     justify-content: center;
     align-items: center;
     z-index: 10000;
-    animation: fadeIn 0.3s ease;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-modal-bg.modal-show {
+    display: flex !important;
+    opacity: 1;
 }
 
 .image-modal-content {
@@ -2541,5 +2850,196 @@ footer {
     .rewards-grid,
     .expectation-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ===== ROPA DE DAMA PAGE STYLES ===== */
+.ropa-dama .ropa-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border: 1px solid #f0f0f0;
+}
+
+.ropa-dama .ropa-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.ropa-dama .ropa-image {
+    height: 300px; /* Altura fija para consistencia */
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px 15px 0 0;
+    pointer-events: auto;
+}
+
+.ropa-dama .ropa-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantiene proporción y llena el contenedor */
+    transition: transform 0.3s ease;
+    cursor: zoom-in;
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
+}
+
+.ropa-dama .ropa-card:hover .ropa-image img {
+    transform: scale(1.08);
+}
+
+.ropa-dama .ropa-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--rosado-vibrante);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.ropa-dama .ropa-badge.nuevo {
+    background: var(--dorado-luxury);
+    color: var(--negro-elegante);
+}
+
+.ropa-dama .ropa-badge.popular {
+    background: var(--rosado-vibrante);
+}
+
+.ropa-dama .favorite-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.ropa-dama .favorite-btn:hover {
+
+   
+
+    background: var(--rosado-vibrante);
+    color: white;
+    transform: scale(1.1);
+}
+
+.ropa-dama .favorite-btn.active {
+    background: var(--rosado-vibrante);
+    color: white;
+}
+
+.ropa-dama .ropa-info {
+    padding: 20px;
+}
+
+.ropa-dama .ropa-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--negro-elegante);
+}
+
+.ropa-dama .ropa-description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.ropa-dama .ropa-code {
+    margin-bottom: 15px;
+}
+
+.ropa-dama .product-code {
+    background: var(--blanco-suave);
+    color: var(--negro-elegante);
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid var(--rosado-suave);
+}
+
+.ropa-dama .ropa-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.ropa-dama .rating-stars {
+    color: var(--dorado-luxury);
+}
+
+.ropa-dama .rating-text {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.ropa-dama .ropa-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.ropa-dama .ropa-actions .btn-primary {
+    flex: 1;
+    padding: 12px;
+    font-size: 0.9rem;
+}
+
+.ropa-dama .ropa-actions .btn-secondary {
+    padding: 12px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Grid layout para ropa de dama */
+.ropa-dama .ropas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Responsive para ropa de dama */
+@media (max-width: 768px) {
+    .ropa-dama .ropas-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .ropa-dama .ropa-image {
+        height: 250px;
+    }
+    
+    .ropa-dama .ropa-actions {
+        flex-direction: column;
+    }
+    
+    .ropa-dama .ropa-actions .btn-secondary {
+        width: 100%;
     }
 }

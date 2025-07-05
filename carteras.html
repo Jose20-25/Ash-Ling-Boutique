@@ -13,16 +13,30 @@
     <header id="header">
         <nav class="container">
             <a href="index.html" class="logo">
-                <img src="logo/logo.png" alt="AhsLing Boutique" style="height: 150px; width: auto; max-width: 180px; display: block;">
+                <img src="logo/logo.png" alt="AhsLing Boutique" style="height: 40px; width: auto;">
                 AhsLing Boutique
             </a>
-            <ul class="nav-links">
-                <li><a href="index.html#inicio">Inicio</a></li>
-                <li><a href="index.html#categorias">Categorías</a></li>
-                <li><a href="index.html#categorias">Productos</a></li>
-                <li><a href="#ofertas">Ofertas</a></li>
-                <li><a href="index.html#contacto">Contacto</a></li>
+
+            <!-- Navigation Menu -->
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="carteras.html">Carteras</a></li>
+                <li><a href="ropa-dama.html">Ropa de Dama</a></li>
+                <li><a href="ropa-caballero.html">Ropa de Caballero</a></li>
+                <li><a href="perfumes.html">Perfumes</a></li>
+                <li><a href="accesorios.html">Accesorios</a></li>
             </ul>
+
+            <!-- Icons Container -->
+            <div class="header-icons">
+                <div class="menu-icon" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="cart-icon" onclick="window.location.href='compras.html'" style="cursor: pointer;">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
         </nav>
     </header>
 
@@ -97,7 +111,7 @@
                 <!-- Cartera 1 -->
                 <div class="cartera-card" data-price="89.99" data-color="negro" data-category="elegante">
                     <div class="cartera-image">
-                        <img src="carteras/BHH027.jpg" alt="Cartera Ejecutiva Negra">
+                        <img src="carteras/BHH027.jpg" alt="Cartera Ejecutiva Negra" class="zoomable-image">
                         <button class="favorite-btn" onclick="toggleFavorite(this)">
                             <i class="far fa-heart"></i>
                         </button>
@@ -122,9 +136,6 @@
                             <button class="btn-primary add-to-cart">
                                 <i class="fas fa-cart-plus"></i> Agregar al Carrito
                             </button>
-                            <button class="btn-secondary" onclick="quickView(this)">
-                                <i class="fas fa-eye"></i>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -132,7 +143,7 @@
                 <!-- Cartera 2 -->
                 <div class="cartera-card" data-price="124.99" data-color="marron" data-category="casual">
                     <div class="cartera-image">
-                        <img src="carteras/BHH164.jpg" alt="Bolso Casual Marrón">
+                        <img src="carteras/BHH164.jpg" alt="Bolso Casual Marrón" class="zoomable-image">
                         <button class="favorite-btn" onclick="toggleFavorite(this)">
                             <i class="far fa-heart"></i>
                         </button>
@@ -157,9 +168,6 @@
                             <button class="btn-primary add-to-cart">
                                 <i class="fas fa-cart-plus"></i> Agregar al Carrito
                             </button>
-                            <button class="btn-secondary" onclick="quickView(this)">
-                                <i class="fas fa-eye"></i>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -167,7 +175,7 @@
                 <!-- Cartera 3 -->
                 <div class="cartera-card" data-price="199.99" data-color="rojo" data-category="elegante">
                     <div class="cartera-image">
-                        <img src="carteras/N075.jpg" alt="Cartera de Lujo N075">
+                        <img src="carteras/N075.jpg" alt="Cartera de Lujo N075" class="zoomable-image">
                         <button class="favorite-btn" onclick="toggleFavorite(this)">
                             <i class="far fa-heart"></i>
                         </button>
@@ -192,9 +200,6 @@
                             <button class="btn-primary add-to-cart">
                                 <i class="fas fa-cart-plus"></i> Agregar al Carrito
                             </button>
-                            <button class="btn-secondary" onclick="quickView(this)">
-                                <i class="fas fa-eye"></i>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -202,7 +207,7 @@
                 <!-- Cartera 4 -->
                 <div class="cartera-card" data-price="159.99" data-color="beige" data-category="casual">
                     <div class="cartera-image">
-                        <img src="carteras/N085.jpg" alt="Bolso Tote N085">
+                        <img src="carteras/N085.jpg" alt="Bolso Tote N085" class="zoomable-image">
                         <button class="favorite-btn" onclick="toggleFavorite(this)">
                             <i class="far fa-heart"></i>
                         </button>
@@ -227,9 +232,6 @@
                             <button class="btn-primary add-to-cart">
                                 <i class="fas fa-cart-plus"></i> Agregar al Carrito
                             </button>
-                            <button class="btn-secondary" onclick="quickView(this)">
-                                <i class="fas fa-eye"></i>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -237,7 +239,7 @@
                 <!-- Cartera 5 -->
                 <div class="cartera-card" data-price="79.99" data-color="azul" data-category="deportiva">
                     <div class="cartera-image">
-                        <img src="carteras/N089.jpg" alt="Bolso Urbano N089">
+                        <img src="carteras/N089.jpg" alt="Bolso Urbano N089" class="zoomable-image">
                         <button class="favorite-btn" onclick="toggleFavorite(this)">
                             <i class="far fa-heart"></i>
                         </button>
@@ -262,9 +264,6 @@
                             <button class="btn-primary add-to-cart">
                                 <i class="fas fa-cart-plus"></i> Agregar al Carrito
                             </button>
-                            <button class="btn-secondary" onclick="quickView(this)">
-                                <i class="fas fa-eye"></i>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -272,7 +271,7 @@
                 <!-- Cartera 6 -->
                 <div class="cartera-card" data-price="299.99" data-color="negro" data-category="lujo">
                     <div class="cartera-image">
-                        <img src="carteras/Z886.jpg" alt="Cartera de Diseñador Z886">
+                        <img src="carteras/Z886.jpg" alt="Cartera de Diseñador Z886" class="zoomable-image">
                         <button class="favorite-btn" onclick="toggleFavorite(this)">
                             <i class="far fa-heart"></i>
                         </button>
@@ -297,28 +296,12 @@
                             <button class="btn-primary add-to-cart">
                                 <i class="fas fa-cart-plus"></i> Agregar al Carrito
                             </button>
-                            <button class="btn-secondary" onclick="quickView(this)">
-                                <i class="fas fa-eye"></i>
-                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Modal de Vista Rápida -->
-    <div id="quickViewModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Vista Rápida</h2>
-                <button class="modal-close" onclick="closeModal()">&times;</button>
-            </div>
-            <div id="modalBody">
-                <!-- Contenido dinámico del modal -->
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer id="contacto">
@@ -367,16 +350,6 @@
     <script src="cart-global.js"></script>
     <script src="script.js"></script>
     <script>
-        // Variables globales
-        let globalCart;
-
-        // Inicializar carrito global
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof ShoppingCart !== 'undefined') {
-                globalCart = new ShoppingCart();
-            }
-        });
-
         // Toggle favoritos
         function toggleFavorite(btn) {
             const icon = btn.querySelector('i');
@@ -442,66 +415,6 @@
             }, 1500);
         }
 
-        // Vista rápida
-        function quickView(btn) {
-            const card = btn.closest('.cartera-card');
-            const title = card.querySelector('.cartera-title').textContent;
-            const code = card.querySelector('.product-code').textContent;
-            const description = card.querySelector('.cartera-description').textContent;
-            const imageSrc = card.querySelector('.cartera-image img').src;
-            
-            const modal = document.getElementById('quickViewModal');
-            const modalBody = document.getElementById('modalBody');
-            
-            modalBody.innerHTML = `
-                <div style="padding: 30px;">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
-                        <div>
-                            <div style="height: 300px; border-radius: 10px; overflow: hidden;">
-                                <img src="${imageSrc}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover;">
-                            </div>
-                        </div>
-                        <div>
-                            <h2 style="margin-bottom: 15px;">${title}</h2>
-                            <p style="color: #666; margin-bottom: 20px; line-height: 1.6;">${description}</p>
-                            <div style="font-size: 1.2rem; font-weight: 600; color: #667eea; background: #f0f2ff; padding: 10px 20px; border-radius: 25px; margin-bottom: 25px; display: inline-block;">${code}</div>
-                            <button class="btn-primary add-to-cart" style="width: 100%; padding: 15px; margin-bottom: 15px;" onclick="addToCart(this); closeModal();">
-                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
-                            </button>
-                            <button class="btn-secondary" style="width: 100%; padding: 15px;" onclick="toggleFavorite(this)">
-                                <i class="fas fa-heart"></i> Agregar a Favoritos
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            modal.style.display = 'block';
-        }
-
-        // Cerrar modal
-        function closeModal() {
-            document.getElementById('quickViewModal').style.display = 'none';
-        }
-
-        // Cerrar modal al hacer clic fuera
-        window.onclick = function(event) {
-            const quickModal = document.getElementById('quickViewModal');
-            
-            if (event.target == quickModal) {
-                quickModal.style.display = 'none';
-            }
-        }
-
-        // Agregar eventos a los botones de agregar al carrito
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.add-to-cart').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    addToCart(this);
-                });
-            });
-        });
-
         // Filtros y búsqueda
         function filterProducts() {
             const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
@@ -566,8 +479,21 @@
             cards.forEach(card => grid.appendChild(card));
         }
 
-        // Event listeners para filtros
+        // Event listeners para filtros y otras funcionalidades
         document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar carrito global
+            if (typeof ShoppingCart !== 'undefined') {
+                globalCart = new ShoppingCart();
+            }
+            
+            // Event listeners para agregar al carrito
+            document.querySelectorAll('.add-to-cart').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    addToCart(this);
+                });
+            });
+
+            // Event listeners para filtros
             const searchInput = document.getElementById('searchInput');
             const sortBy = document.getElementById('sortBy');
             const colorFilter = document.getElementById('color');
@@ -600,7 +526,115 @@
                     }
                 });
             });
+            
+            // Modal de imagen dinámico
+            document.querySelectorAll('.zoomable-image').forEach((img, index) => {
+                img.style.cursor = 'zoom-in';
+                
+                img.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openImageModal(this.src, this.alt);
+                });
+            });
         });
+
+        // Modal de imagen dinámico
+        function openImageModal(src, alt) {
+            
+            // Crear modal dinámicamente
+            const modal = document.createElement('div');
+            modal.className = 'image-modal-bg';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+            
+            const content = document.createElement('div');
+            content.className = 'image-modal-content';
+            content.style.cssText = `
+                position: relative;
+                max-width: 70vw;
+                max-height: 80vh;
+                transform: scale(0.7);
+                transition: transform 0.3s ease;
+            `;
+            
+            const closeBtn = document.createElement('button');
+            closeBtn.innerHTML = '&times;';
+            closeBtn.className = 'image-modal-close';
+            closeBtn.style.cssText = `
+                position: absolute;
+                top: -40px;
+                right: 0;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 40px;
+                cursor: pointer;
+                z-index: 10001;
+            `;
+            
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = alt;
+            img.style.cssText = `
+                max-width: 60vw;
+                max-height: 70vh;
+                width: auto;
+                height: auto;
+                object-fit: contain;
+                border-radius: 8px;
+            `;
+            
+            content.appendChild(closeBtn);
+            content.appendChild(img);
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+            
+            // Animar entrada
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                content.style.transform = 'scale(1)';
+            }, 10);
+            
+            // Event listeners para cerrar
+            const closeModal = () => {
+                modal.style.opacity = '0';
+                content.style.transform = 'scale(0.7)';
+                setTimeout(() => {
+                    if (modal.parentNode) {
+                        modal.parentNode.removeChild(modal);
+                    }
+                }, 300);
+            };
+            
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Cerrar con ESC
+            const handleEsc = (e) => {
+                if (e.key === 'Escape') {
+                    closeModal();
+                    document.removeEventListener('keydown', handleEsc);
+                }
+            };
+            document.addEventListener('keydown', handleEsc);
+        }
     </script>
 </body>
 </html>

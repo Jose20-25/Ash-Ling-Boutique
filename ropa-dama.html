@@ -1008,17 +1008,7 @@
         </div>
     </div>
 
-    <!-- Modal de Vista Rápida -->
-    <div id="quickViewModal" class="modal" style="display: none;">
-        <div class="modal-overlay">
-            <div class="modal-content">
-                <button class="modal-close" onclick="closeModal()">&times;</button>
-                <div id="modalBody">
-                    <!-- Contenido dinámico del modal -->
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Footer -->
     <footer id="contacto">
@@ -1067,16 +1057,6 @@
     <script src="cart-global.js"></script>
     <script src="script.js"></script>
     <script>
-        // Variables globales
-        let globalCart;
-
-        // Inicializar carrito global
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof ShoppingCart !== 'undefined') {
-                globalCart = new ShoppingCart();
-            }
-        });
-
         // Toggle favoritos
         function toggleFavorite(btn) {
             const icon = btn.querySelector('i');
@@ -1137,57 +1117,6 @@
                 btn.style.background = '';
                 btn.innerHTML = '<i class="fas fa-cart-plus"></i> Agregar al Carrito';
             }, 1500);
-        }
-
-        // Vista rápida
-        function quickView(btn) {
-            const card = btn.closest('.ropa-card');
-            const title = card.querySelector('.ropa-title').textContent;
-            const code = card.querySelector('.product-code').textContent;
-            const description = card.querySelector('.ropa-description').textContent;
-            const imageSrc = card.querySelector('.ropa-image img').src;
-            
-            const modal = document.getElementById('quickViewModal');
-            const modalBody = document.getElementById('modalBody');
-            
-            modalBody.innerHTML = `
-                <div class="modal-content">
-                    <div class="modal-grid">
-                        <div>
-                            <div class="modal-image-container">
-                                <img src="${imageSrc}" alt="${title}" class="modal-product-image">
-                            </div>
-                        </div>
-                        <div>
-                            <h2 class="modal-product-title">${title}</h2>
-                            <p class="modal-product-description">${description}</p>
-                            <div class="modal-product-code">${code}</div>
-                            <button class="btn-primary add-to-cart modal-add-to-cart" onclick="addToCart(this); closeModal();">
-                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
-                            </button>
-                            <button class="btn-secondary modal-favorite-btn" onclick="toggleFavorite(this)">
-                                <i class="fas fa-heart"></i> Agregar a Favoritos
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            modal.style.display = 'block';
-        }
-
-        // Cerrar modal
-        function closeModal() {
-            document.getElementById('quickViewModal').style.display = 'none';
-        }
-
-        // Cerrar modal al hacer clic fuera
-        window.onclick = function(event) {
-            const quickModal = document.getElementById('quickViewModal');
-            
-            if (event.target == quickModal) {
-                quickModal.style.display = 'none';
-            }
         }
 
         // Filtros y búsqueda completos
@@ -1256,6 +1185,11 @@
 
         // Event listeners
         document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar carrito global
+            if (typeof ShoppingCart !== 'undefined') {
+                globalCart = new ShoppingCart();
+            }
+
             // Agregar eventos a los botones de agregar al carrito
             document.querySelectorAll('.add-to-cart').forEach(btn => {
                 btn.addEventListener('click', function() {
@@ -1297,22 +1231,80 @@
                 });
             });
 
-            // Modal de imagen
-            document.querySelectorAll('.zoomable-image').forEach(img => {
-                img.addEventListener('click', function() {
-                    openImageModal(this.src, this.alt);
+            // Modal de imagen - VERSIÓN SIMPLIFICADA
+            console.log('Configurando modal de imagen...');
+            document.querySelectorAll('.zoomable-image').forEach((img, index) => {
+                console.log(`Imagen ${index + 1} encontrada:`, img.src);
+                img.style.cursor = 'zoom-in';
+                
+                img.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('¡CLICK DETECTADO EN IMAGEN!', this.src);
+                    
+                    // Versión simplificada del modal
+                    const modal = document.createElement('div');
+                    modal.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0, 0, 0, 0.9);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        z-index: 10000;
+                        cursor: pointer;
+                    `;
+                    
+                    const img = document.createElement('img');
+                    img.src = this.src;
+                    img.style.cssText = `
+                        max-width: 60vw;
+                        max-height: 70vh;
+                        width: auto;
+                        height: auto;
+                        object-fit: contain;
+                        border-radius: 8px;
+                    `;
+                    
+                    modal.appendChild(img);
+                    document.body.appendChild(modal);
+                    
+                    // Cerrar con click
+                    modal.addEventListener('click', () => {
+                        document.body.removeChild(modal);
+                    });
+                    
+                    // Cerrar con ESC
+                    const handleEsc = (e) => {
+                        if (e.key === 'Escape') {
+                            document.body.removeChild(modal);
+                            document.removeEventListener('keydown', handleEsc);
+                        }
+                    };
+                    document.addEventListener('keydown', handleEsc);
                 });
             });
         });
 
-        // Funciones del modal de imagen
+        // Funciones del modal de imagen - COMENTADAS (usando versión simplificada)
+        /*
         function openImageModal(src, alt) {
+            console.log('Abriendo modal para:', src);
             const modal = document.getElementById('image-modal');
             const modalImg = document.getElementById('modal-image');
+            
+            if (!modal) {
+                console.error('Modal no encontrado!');
+                return;
+            }
             
             modalImg.src = src;
             modalImg.alt = alt;
             modal.style.display = 'flex';
+            modal.classList.add('modal-show');
             
             // Agregar clase para animación
             setTimeout(() => {
@@ -1325,6 +1317,7 @@
             const modal = document.getElementById('image-modal');
             const content = modal.querySelector('.image-modal-content');
             
+            modal.classList.remove('modal-show');
             content.style.transform = 'scale(0.7)';
             content.style.opacity = '0';
             
@@ -1340,6 +1333,13 @@
                 closeImageModal();
             }
         });
+        */
+
+        // Función quickView temporal
+        function quickView(btn) {
+            console.log('QuickView clicked');
+            // Por ahora no hace nada, evita errores
+        }
     </script>
 </body>
 </html>

@@ -95,10 +95,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Newsletter form
-document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const button = this.querySelector('.newsletter-button');
-    const input = this.querySelector('.newsletter-input');
+const newsletterForm = document.querySelector('.newsletter-form');
+if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const button = this.querySelector('.newsletter-button');
+        const input = this.querySelector('.newsletter-input');
     
     // Add loading state
     const originalText = button.innerHTML;
@@ -118,6 +120,7 @@ document.querySelector('.newsletter-form').addEventListener('submit', function(e
         }, 3000);
     }, 1500);
 });
+}
 
 // Parallax effect for hero section
 window.addEventListener('scroll', function() {

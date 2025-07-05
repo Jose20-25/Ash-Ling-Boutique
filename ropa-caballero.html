@@ -7,6 +7,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilo para el modal de imagen grande */
+        .image-modal-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        .image-modal-content {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 90vw;
+            max-height: 90vh;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .image-modal-content img {
+            max-width: 80vw;
+            max-height: 70vh;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .image-modal-close {
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.85;
+            transition: background 0.2s;
+        }
+        .image-modal-close:hover {
+            background: #ff4757;
+        }
+    </style>
 </head>
 <body class="ropa-caballero">
     <!-- Header -->
@@ -460,83 +511,6 @@
                 <div class="ropa-card" data-price="119.99" data-color="chaqueta" data-category="deportivo">
                     <div class="ropa-image">
                         <img src="ropa de cabllero/W030.jpg" alt="Chaqueta Deportiva Premium" class="zoomable-image">
-    <style>
-    /* Estilo para el modal de imagen grande */
-    .image-modal-bg {
-        position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(0,0,0,0.8);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-    }
-    .image-modal-content {
-        background: #fff;
-        border-radius: 12px;
-        padding: 20px;
-        max-width: 90vw;
-        max-height: 90vh;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .image-modal-content img {
-        max-width: 80vw;
-        max-height: 70vh;
-        border-radius: 10px;
-        margin-bottom: 10px;
-    }
-    .image-modal-close {
-        background: #333;
-        color: #fff;
-        border: none;
-        border-radius: 50%;
-        width: 36px;
-        height: 36px;
-        font-size: 1.5rem;
-        cursor: pointer;
-        position: absolute;
-        top: 30px;
-        right: 30px;
-        z-index: 10001;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0.85;
-        transition: background 0.2s;
-    }
-    .image-modal-close:hover {
-        background: #ff4757;
-    }
-    </style>
-    <script>
-    // Modal para mostrar imagen grande al hacer clic
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.zoomable-image').forEach(img => {
-            img.style.cursor = 'zoom-in';
-            img.addEventListener('click', function() {
-                // Crear modal
-                const modalBg = document.createElement('div');
-                modalBg.className = 'image-modal-bg';
-                modalBg.innerHTML = `
-                    <div class="image-modal-content">
-                        <button class="image-modal-close" title="Cerrar">&times;</button>
-                        <img src="${img.src}" alt="${img.alt}">
-                    </div>
-                `;
-                document.body.appendChild(modalBg);
-                // Cerrar modal al hacer clic en el fondo o el botón
-                modalBg.addEventListener('click', function(e) {
-                    if (e.target === modalBg || e.target.classList.contains('image-modal-close')) {
-                        modalBg.remove();
-                    }
-                });
-            });
-        });
-    });
-    </script>
                         <button class="favorite-btn" onclick="toggleFavorite(this)">
                             <i class="far fa-heart"></i>
                         </button>
@@ -570,13 +544,6 @@
             </div>
         </div>
     </section>
-
-
-            <div id="modalBody">
-                <!-- Contenido dinámico del modal -->
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer id="contacto">
@@ -625,14 +592,108 @@
     <script src="cart-global.js"></script>
     <script src="script.js"></script>
     <script>
-        // Variables globales
-        let globalCart;
-
-        // Inicializar carrito global
+        // Modal para mostrar imagen grande al hacer clic
         document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar carrito global
             if (typeof ShoppingCart !== 'undefined') {
                 globalCart = new ShoppingCart();
             }
+
+            document.querySelectorAll('.zoomable-image').forEach((img, index) => {
+                console.log(`Configurando imagen ${index + 1}:`, img.src);
+                img.style.cursor = 'zoom-in';
+                
+                img.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('¡CLICK DETECTADO EN IMAGEN!', this.src);
+                    
+                    // Versión simplificada del modal
+                    const modal = document.createElement('div');
+                    modal.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0, 0, 0, 0.9);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        z-index: 10000;
+                        cursor: pointer;
+                    `;
+                    
+                    const img = document.createElement('img');
+                    img.src = this.src;
+                    img.style.cssText = `
+                        max-width: 60vw;
+                        max-height: 70vh;
+                        width: auto;
+                        height: auto;
+                        object-fit: contain;
+                        border-radius: 8px;
+                    `;
+                    
+                    modal.appendChild(img);
+                    document.body.appendChild(modal);
+                    
+                    // Cerrar con click
+                    modal.addEventListener('click', () => {
+                        document.body.removeChild(modal);
+                    });
+                    
+                    // Cerrar con ESC
+                    const handleEsc = (e) => {
+                        if (e.key === 'Escape') {
+                            document.body.removeChild(modal);
+                            document.removeEventListener('keydown', handleEsc);
+                        }
+                    };
+                    document.addEventListener('keydown', handleEsc);
+                });
+            });
+
+            // Event listeners para filtros
+            const searchInput = document.getElementById('searchInput');
+            const sortBy = document.getElementById('sortBy');
+            const colorFilter = document.getElementById('color');
+
+            if (searchInput) {
+                searchInput.addEventListener('input', filterProducts);
+            }
+            if (sortBy) {
+                sortBy.addEventListener('change', sortProducts);
+            }
+            if (colorFilter) {
+                colorFilter.addEventListener('change', filterProducts);
+            }
+
+            // Toggle vista
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const view = this.dataset.view;
+                    const grid = document.getElementById('ropaGrid');
+                    
+                    if (grid) {
+                        if (view === 'list') {
+                            grid.style.gridTemplateColumns = '1fr';
+                        } else {
+                            grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))';
+                        }
+                    }
+                });
+            });
+
+            // Event listeners para agregar al carrito
+            document.querySelectorAll('.add-to-cart').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    addToCart(this);
+                });
+            });
         });
 
         // Toggle favoritos
@@ -700,66 +761,6 @@
             }, 1500);
         }
 
-        // Vista rápida
-        function quickView(btn) {
-            const card = btn.closest('.ropa-card');
-            const title = card.querySelector('.ropa-title').textContent;
-            const code = card.querySelector('.product-code').textContent;
-            const description = card.querySelector('.ropa-description').textContent;
-            const imageSrc = card.querySelector('.ropa-image img').src;
-            
-            const modal = document.getElementById('quickViewModal');
-            const modalBody = document.getElementById('modalBody');
-            
-            modalBody.innerHTML = `
-                <div style="padding: 30px;">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
-                        <div>
-                            <div style="height: 300px; border-radius: 10px; overflow: hidden;">
-                                <img src="${imageSrc}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover;">
-                            </div>
-                        </div>
-                        <div>
-                            <h2 style="margin-bottom: 15px;">${title}</h2>
-                            <p style="color: #666; margin-bottom: 20px; line-height: 1.6;">${description}</p>
-                            <div style="font-size: 1.2rem; font-weight: 600; color: #667eea; background: #f0f2ff; padding: 10px 20px; border-radius: 25px; margin-bottom: 25px; display: inline-block;">${code}</div>
-                            <button class="btn-primary add-to-cart" style="width: 100%; padding: 15px; margin-bottom: 15px;" onclick="addToCart(this); closeModal();">
-                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
-                            </button>
-                            <button class="btn-secondary" style="width: 100%; padding: 15px;" onclick="toggleFavorite(this)">
-                                <i class="fas fa-heart"></i> Agregar a Favoritos
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            modal.style.display = 'block';
-        }
-
-        // Cerrar modal
-        function closeModal() {
-            document.getElementById('quickViewModal').style.display = 'none';
-        }
-
-        // Cerrar modal al hacer clic fuera
-        window.onclick = function(event) {
-            const quickModal = document.getElementById('quickViewModal');
-            
-            if (event.target == quickModal) {
-                quickModal.style.display = 'none';
-            }
-        }
-
-        // Agregar eventos a los botones de agregar al carrito
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.add-to-cart').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    addToCart(this);
-                });
-            });
-        });
-
         // Filtros y búsqueda (simplificados para ropa de caballero)
         function filterProducts() {
             const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
@@ -824,41 +825,13 @@
             cards.forEach(card => grid.appendChild(card));
         }
 
+        // Función quickView temporal
+        function quickView(btn) {
+            console.log('QuickView clicked');
+            // Por ahora no hace nada, evita errores
+        }
+
         // Event listeners para filtros
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('searchInput');
-            const sortBy = document.getElementById('sortBy');
-            const colorFilter = document.getElementById('color');
-
-            if (searchInput) {
-                searchInput.addEventListener('input', filterProducts);
-            }
-            if (sortBy) {
-                sortBy.addEventListener('change', sortProducts);
-            }
-            if (colorFilter) {
-                colorFilter.addEventListener('change', filterProducts);
-            }
-
-            // Toggle vista
-            document.querySelectorAll('.view-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const view = this.dataset.view;
-                    const grid = document.getElementById('ropaGrid');
-                    
-                    if (grid) {
-                        if (view === 'list') {
-                            grid.style.gridTemplateColumns = '1fr';
-                        } else {
-                            grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))';
-                        }
-                    }
-                });
-            });
-        });
     </script>
 </body>
 </html>
